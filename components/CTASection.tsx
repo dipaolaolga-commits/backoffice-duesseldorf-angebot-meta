@@ -1,4 +1,5 @@
 import { Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const CTASection = () => {
   return (
@@ -8,29 +9,55 @@ export const CTASection = () => {
       <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-80 h-80 bg-blue-700 rounded-full opacity-50"></div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl md:text-5xl font-bold mb-6 tracking-tight"
+        >
           Lassen Sie uns 15 Minuten sprechen – <br className="hidden md:block"/>
           und sofort Klarheit schaffen.
-        </h2>
+        </motion.h2>
         
-        <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
+        >
           Unverbindlich. Kostenlos. Sie sagen uns, wo Sie stehen. Wir zeigen Ihnen, wie Sie Monat für Monat entlastet werden.
-        </p>
+        </motion.p>
         
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a 
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row justify-center items-center gap-4"
+        >
+          <motion.a 
             href="#contact" 
-            className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center text-lg"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center text-lg"
             aria-label="Jetzt Erstgespräch buchen"
           >
             <Calendar className="mr-2 h-6 w-6" aria-hidden="true" />
             🎯 Jetzt Erstgespräch buchen
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
         
-        <p className="mt-8 text-sm text-blue-200 opacity-80">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="mt-8 text-sm text-blue-200 opacity-80"
+        >
           Keine Verpflichtung. Einfach ein gutes Gespräch.
-        </p>
+        </motion.p>
       </div>
     </section>
   );

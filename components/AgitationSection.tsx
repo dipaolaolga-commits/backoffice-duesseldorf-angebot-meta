@@ -18,28 +18,53 @@ export const AgitationSection = () => {
     <section className="py-20 bg-slate-900 text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-3xl md:text-4xl font-bold mb-8"
+          >
             Und die Folgen? <br />
-            <span className="text-red-400">Chaos, unnötige Kosten und das Gefühl, ständig hinterherzulaufen.</span>
-          </h2>
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-red-400"
+            >Chaos, unnötige Kosten und das Gefühl, ständig hinterherzulaufen.</motion.span>
+          </motion.h2>
           
           <div className="grid md:grid-cols-1 gap-6 mb-12 text-left max-w-2xl mx-auto">
-            {consequences.map((item) => (
-              <div key={item.id} className="flex items-center space-x-4">
+            {consequences.map((item, index) => (
+              <motion.div 
+                key={item.id}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.3, ease: "easeOut" }}
+                className="flex items-center space-x-4"
+              >
                 <div className="h-2 w-2 rounded-full bg-red-500 flex-shrink-0" aria-hidden="true"></div>
                 <p className="text-lg text-slate-300">{item.text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <p className="text-xl md:text-2xl font-semibold text-white border-t border-slate-700 pt-8 inline-block">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="text-xl md:text-2xl font-semibold text-white border-t border-slate-700 pt-8 inline-block"
+          >
             Sie arbeiten hart – aber ohne ein sauberes Backoffice arbeiten Sie doppelt hart.
-          </p>
+          </motion.p>
         </motion.div>
       </div>
     </section>

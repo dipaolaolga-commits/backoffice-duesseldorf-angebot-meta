@@ -5,10 +5,28 @@ export const PricingSection = () => {
   return (
     <section id="pricing" className="py-24 bg-slate-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Leistungspakete</h2>
-          <p className="text-slate-400 text-lg">Transparent und fair. Wählen Sie, was zu Ihnen passt.</p>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-3xl font-bold mb-4"
+          >Leistungspakete</motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-slate-400 text-lg"
+          >Transparent und fair. Wählen Sie, was zu Ihnen passt.</motion.p>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Basic */}
@@ -33,9 +51,14 @@ export const PricingSection = () => {
               <li key="basic-1" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Vorbereitung für den Steuerberater</li>
               <li key="basic-2" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Gewinnreport / Monat</li>
             </ul>
-            <a href="#contact" className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors">
+            <motion.a 
+              href="#contact" 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors"
+            >
               Anfragen
-            </a>
+            </motion.a>
           </motion.div>
 
           {/* Plus */}
@@ -65,9 +88,14 @@ export const PricingSection = () => {
               <li key="plus-3" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Alle Reports & Auswertungen</li>
               <li key="plus-4" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Jahresübersichten inklusive</li>
             </ul>
-            <a href="#contact" className="block w-full text-center py-3 px-4 bg-white hover:bg-slate-100 text-blue-600 rounded-lg font-bold transition-colors">
+            <motion.a 
+              href="#contact" 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="block w-full text-center py-3 px-4 bg-white hover:bg-slate-100 text-blue-600 rounded-lg font-bold transition-colors"
+            >
               Jetzt starten
-            </a>
+            </motion.a>
           </motion.div>
 
           {/* Premium */}
@@ -92,9 +120,14 @@ export const PricingSection = () => {
               <li key="premium-3" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Priorisierte Bearbeitung</li>
               <li key="premium-4" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Maßgeschneiderte Lösungen</li>
             </ul>
-            <a href="#contact" className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors">
+            <motion.a 
+              href="#contact" 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors"
+            >
               Angebot anfordern
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </div>

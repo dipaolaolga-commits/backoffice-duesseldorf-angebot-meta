@@ -22,18 +22,36 @@ export const ProblemSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-             initial={{ opacity: 0, x: -20 }}
-             whileInView={{ opacity: 1, x: 0 }}
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
-              Das Problem: <span className="text-red-600">Der Papierkram frisst Ihre Zeit</span> – und Ihre Nerven.
-            </h2>
-            <p className="text-lg text-slate-600 mb-8">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-3xl font-bold text-slate-900 mb-6"
+            >
+              Das Problem: <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="text-red-600"
+              >Der Papierkram frisst Ihre Zeit</motion.span> – und Ihre Nerven.
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="text-lg text-slate-600 mb-8"
+            >
               Viele kleine Unternehmen stehen jeden Monat vor denselben Herausforderungen. 
               Der Verwaltungsaufwand hält Sie davon ab, das zu tun, was Ihnen Geld bringt.
-            </p>
+            </motion.p>
             <div className="relative h-64 w-full rounded-xl overflow-hidden shadow-xl">
                <img 
                  src="https://picsum.photos/seed/officechaos/600/400" 
@@ -46,19 +64,26 @@ export const ProblemSection = () => {
           </motion.div>
 
           <motion.div
-             initial={{ opacity: 0, x: 20 }}
-             whileInView={{ opacity: 1, x: 0 }}
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <ul className="space-y-6">
-              {problems.map((item) => {
+              {problems.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <li key={item.id} className="flex items-start bg-slate-50 p-4 rounded-lg border-l-4 border-red-500 shadow-sm">
+                  <motion.li 
+                    key={item.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                    className="flex items-start bg-slate-50 p-4 rounded-lg border-l-4 border-red-500 shadow-sm"
+                  >
                     <Icon className="h-6 w-6 text-red-500 mr-4 flex-shrink-0 mt-1" aria-hidden="true" />
                     <span className="text-slate-700 font-medium">{item.text}</span>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>
