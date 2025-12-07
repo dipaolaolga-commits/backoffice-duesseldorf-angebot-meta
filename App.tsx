@@ -18,6 +18,7 @@ import { ComparisonSection } from './components/ComparisonSection';
 import { FAQSection } from './components/FAQSection';
 import { ImpressumPage } from './components/ImpressumPage';
 import { DatenschutzPage } from './components/DatenschutzPage';
+import { ThankYouPage } from './components/ThankYouPage';
 import { LoadingProvider } from './contexts/LoadingContext';
 import { ScrollToTop } from './components/ScrollToTop';
 
@@ -50,6 +51,7 @@ const AppContent = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/vorqualifizierung" element={<QualificationPage />} />
+            <Route path="/danke" element={<ThankYouPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/datenschutz" element={<DatenschutzPage />} />
           </Routes>

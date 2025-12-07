@@ -269,7 +269,10 @@ export const QualificationPage = () => {
               transition={{ delay: 0.7 }}
             >
               <button
-                onClick={() => setCurrentStep(questions.length)}
+                onClick={() => {
+                  setShowEvaluation(false);
+                  setCurrentStep(questions.length);
+                }}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Jetzt Erstgespräch buchen

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle2, Mail, Phone, Building } from 'lucide-react';
+import { Send, Mail, Phone, Building } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface QualificationData {
   employees: string;
@@ -16,6 +17,7 @@ interface ContactFormProps {
 }
 
 export const ContactForm = ({ qualificationData }: ContactFormProps) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,13 +26,13 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
     company: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Hier würde normalerweise die Formular-Daten gesendet werden
     console.log('Formular-Daten:', { ...formData, qualificationData });
-    setIsSubmitted(true);
+    // Navigiere zur Dankesseite
+    navigate('/danke');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -39,41 +41,6 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
       [e.target.name]: e.target.value,
     }));
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20 flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        >
-          <div className="bg-white rounded-2xl shadow-lg p-12">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <CheckCircle2 className="h-12 w-12 text-green-600" />
-            </motion.div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Vielen Dank für Ihre Anfrage!
-            </h2>
-            <p className="text-lg text-slate-600 mb-8">
-              Wir haben Ihre Angaben erhalten und melden uns in Kürze bei Ihnen, um ein passendes Angebot zu erstellen.
-            </p>
-            <a
-              href="/"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Zurück zur Startseite
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20">

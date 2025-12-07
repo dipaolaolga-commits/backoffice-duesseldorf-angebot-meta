@@ -144,10 +144,6 @@ export const PricingSection = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             style={{ willChange: 'transform, opacity' }}
           >
-            <div className="absolute -top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 text-xs font-bold px-4 py-2 rounded-full shadow-lg z-20"
-            >
-              BELIEBT
-            </div>
             <div className="mb-5">
               <h3 className="text-2xl font-bold text-white mb-2">bis 80 Belege</h3>
               <p className="text-white/90 text-base mt-1 font-medium">Für mittlere Unternehmen</p>
