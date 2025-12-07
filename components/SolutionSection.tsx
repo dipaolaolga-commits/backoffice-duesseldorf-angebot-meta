@@ -9,160 +9,168 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, icon: Icon, items, delay }: FeatureCardProps) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    whileHover="hover"
-    viewport={{ once: true }}
-    custom={delay}
-    variants={{
-      hidden: { opacity: 0, y: 20 },
-      visible: (d) => ({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, delay: d }
-      }),
-      hover: {
-        y: -8,
-        scale: 1.02,
-        transition: { type: "spring", stiffness: 300, damping: 20 }
-      }
-    }}
-    className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300"
+  <div className="group relative h-full"
   >
-    <motion.div
-      variants={{
-        hidden: { scale: 0.5, opacity: 0 },
-        visible: { 
-          scale: 1, 
-          opacity: 1,
-          rotate: 0,
-          transition: { 
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-            delay: delay + 0.1 
-          } 
-        },
-        hover: { 
-          scale: 1.15, 
-          rotate: 5,
-          color: "#2563eb",
-          transition: { type: "spring", stiffness: 400, damping: 10 }
-        }
-      }}
-      className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 origin-center"
-    >
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, scale: 0.5 },
-          visible: { 
-            opacity: 1, 
-            scale: 1, 
-            transition: { duration: 0.4, delay: delay + 0.2 } 
-          },
-          hover: { opacity: 1, scale: 1 }
-        }}
-      >
-        <Icon size={28} />
-      </motion.div>
-    </motion.div>
-    <h3 className="text-xl font-bold text-slate-900 mb-4">{title}</h3>
-    <ul className="space-y-3">
-      {items.map((item, idx) => (
-        <li key={`${title}-${idx}`} className="flex items-start text-slate-600 text-sm">
-          <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
-          {item}
-        </li>
-      ))}
-    </ul>
-  </motion.div>
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-7 shadow-sm hover:shadow-2xl border border-slate-200/80 hover:border-blue-300/50 transition-all duration-500 h-full flex flex-col overflow-hidden">
+      {/* Modern icon design */}
+      <div className="mb-6">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-indigo-500/10 border border-blue-200/30 group-hover:from-blue-500/20 group-hover:via-blue-500/10 group-hover:to-indigo-500/20 group-hover:border-blue-300/50 transition-all duration-500">
+          <Icon size={32} className="text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />
+        </div>
+      </div>
+      
+      <h3 className="text-xl font-bold text-slate-900 mb-6 group-hover:text-blue-700 transition-colors duration-300 leading-tight">{title}</h3>
+      
+      <ul className="space-y-3.5 flex-grow">
+        {items.map((item, idx) => (
+          <li 
+            key={`${title}-${idx}`}
+            className="flex items-start text-slate-600 text-sm group-hover:text-slate-700 transition-colors"
+          >
+            <div className="mt-0.5 mr-3 flex-shrink-0">
+              <div className="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200/50 flex items-center justify-center group-hover:bg-emerald-100 group-hover:border-emerald-300 transition-colors duration-300">
+                <Check className="h-3 w-3 text-emerald-600" aria-hidden="true" />
+              </div>
+            </div>
+            <span className="leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+      
+      {/* Subtle bottom accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    </div>
+  </div>
 );
 
 export const SolutionSection = () => {
   return (
-    <section id="solution" className="py-24 bg-blue-50/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="solution" className="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgb(15 23 42) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="text-center max-w-3xl mx-auto mb-20"
         >
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl font-bold text-slate-900 mb-4"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+            className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight"
           >
-            ⭐ Die Lösung: Ein Backoffice-Service, der Ihnen Arbeit abnimmt
+            Die Lösung: Ein Backoffice-Service, der Ihnen Arbeit abnimmt
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl text-slate-600"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+            className="text-xl text-slate-600 leading-relaxed"
           >
             Wir übernehmen für Sie die komplette Verwaltung – damit Sie sich auf Ihr Geschäft konzentrieren können.
           </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <FeatureCard 
-            title="Vorbereitende Buchhaltung" 
-            icon={FileText}
-            delay={0.1}
-            items={[
-              "Digitale Belegorganisation",
-              "Sortierung & Zuordnung",
-              "Bank- & Zahlungsabgleich",
-              "Vorsteuer-/Umsatzsteuer-Vorbereitung",
-              "Monatsreports mit Gewinnübersicht",
-              "Jahreszusammenfassung"
-            ]}
-          />
-          <FeatureCard 
-            title="Lohnabrechnung" 
-            icon={Users}
-            delay={0.2}
-            items={[
-              "Lohn- & Gehaltsabrechnungen",
-              "SV-Meldungen & DEÜV",
-              "Beitragsnachweise",
-              "Lohnsteueranmeldung",
-              "Jahresmeldungen",
-              "Digitale Lohnakte"
-            ]}
-          />
-          <FeatureCard 
-            title="Digitale Prozesse" 
-            icon={Cloud}
-            delay={0.3}
-            items={[
-              "Cloud-Upload (App/PC)",
-              "Automatisierte Ablage",
-              "Sichere Datenverarbeitung",
-              "Übersichtliches Dashboard",
-              "Papierloses Büro",
-              "Ständige Verfügbarkeit"
-            ]}
-          />
-          <FeatureCard 
-            title="Steuerlast-Prognose" 
-            icon={BarChart3}
-            delay={0.4}
-            items={[
-              "Was bleibt mir wirklich?",
-              "Was muss ich zurücklegen?",
-              "Realistische Steuerbelastung",
-              "Rücklagenrechner",
-              "Monatliche Klarheit",
-              "Keine bösen Überraschungen"
-            ]}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            <FeatureCard 
+              title="Vorbereitende Buchhaltung" 
+              icon={FileText}
+              delay={0.1}
+              items={[
+                "Digitale Belegorganisation",
+                "Sortierung & Zuordnung",
+                "Bank- & Zahlungsabgleich",
+                "Vorsteuer-/Umsatzsteuer-Vorbereitung",
+                "Monatsreports mit Gewinnübersicht",
+                "Jahreszusammenfassung"
+              ]}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            <FeatureCard 
+              title="Lohnabrechnung" 
+              icon={Users}
+              delay={0.2}
+              items={[
+                "Lohn- & Gehaltsabrechnungen",
+                "SV-Meldungen & DEÜV",
+                "Beitragsnachweise",
+                "Lohnsteueranmeldung",
+                "Jahresmeldungen",
+                "Digitale Lohnakte"
+              ]}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            <FeatureCard 
+              title="Digitale Prozesse" 
+              icon={Cloud}
+              delay={0.3}
+              items={[
+                "Cloud-Upload (App/PC)",
+                "Automatisierte Ablage",
+                "Sichere Datenverarbeitung",
+                "Übersichtliches Dashboard",
+                "Papierloses Büro",
+                "Ständige Verfügbarkeit"
+              ]}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            <FeatureCard 
+              title="Steuerlast-Prognose" 
+              icon={BarChart3}
+              delay={0.4}
+              items={[
+                "Was bleibt mir wirklich?",
+                "Was muss ich zurücklegen?",
+                "Realistische Steuerbelastung",
+                "Rücklagenrechner",
+                "Monatliche Klarheit",
+                "Keine bösen Überraschungen"
+              ]}
+            />
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,63 +1,71 @@
-import { Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Calendar, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLoading } from '../contexts/LoadingContext';
 
 export const CTASection = () => {
-  return (
-    <section id="contact" className="py-24 bg-blue-600 text-white relative overflow-hidden">
-      {/* Decorative Circles */}
-      <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-64 h-64 bg-blue-500 rounded-full opacity-50"></div>
-      <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-80 h-80 bg-blue-700 rounded-full opacity-50"></div>
+  const navigate = useNavigate();
+  const { navigateWithLoading, isLoading } = useLoading();
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-3xl md:text-5xl font-bold mb-6 tracking-tight"
-        >
-          Lassen Sie uns 15 Minuten sprechen – <br className="hidden md:block"/>
-          und sofort Klarheit schaffen.
-        </motion.h2>
-        
-        <motion.p 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigateWithLoading(() => navigate('/vorqualifizierung'), 1500);
+  };
+
+  return (
+    <section id="contact" className="py-24 lg:py-32 bg-blue-50/30 relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Weiße Karte */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 text-center"
         >
-          Unverbindlich. Kostenlos. Sie sagen uns, wo Sie stehen. Wir zeigen Ihnen, wie Sie Monat für Monat entlastet werden.
-        </motion.p>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row justify-center items-center gap-4"
-        >
-          <motion.a 
-            href="#contact" 
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center text-lg"
-            aria-label="Jetzt Erstgespräch buchen"
+          {/* Überschrift */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight"
           >
-            <Calendar className="mr-2 h-6 w-6" aria-hidden="true" />
-            🎯 Jetzt Erstgespräch buchen
-          </motion.a>
+            Lassen Sie uns 15 Minuten sprechen –<br />
+            und sofort Klarheit schaffen.
+          </motion.h2>
+          
+          {/* CTA Button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+            className="mb-10"
+          >
+            <motion.div
+              whileHover={{ scale: isLoading ? 1 : 1.02, y: isLoading ? 0 : -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <button
+                onClick={handleClick}
+                disabled={isLoading}
+                className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white font-bold py-5 px-10 rounded-full shadow-[0_4px_20px_-2px_rgba(37,99,235,0.4)] hover:shadow-[0_6px_30px_-4px_rgba(37,99,235,0.5)] transition-all duration-300 text-lg relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
+                aria-label="Jetzt Erstgespräch buchen"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative z-10 flex items-center gap-2">
+                  Jetzt Erstgespräch buchen
+                  <Calendar className="h-5 w-5" aria-hidden="true" />
+                </span>
+              </button>
+            </motion.div>
+          </motion.div>
+
         </motion.div>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="mt-8 text-sm text-blue-200 opacity-80"
-        >
-          Keine Verpflichtung. Einfach ein gutes Gespräch.
-        </motion.p>
       </div>
     </section>
   );

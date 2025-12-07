@@ -1,133 +1,290 @@
-import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Check, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLoading } from '../contexts/LoadingContext';
 
 export const PricingSection = () => {
+  const navigate = useNavigate();
+  const { navigateWithLoading, isLoading } = useLoading();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigateWithLoading(() => navigate('/vorqualifizierung'), 1500);
+  };
+
   return (
-    <section id="pricing" className="py-24 bg-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
+      {/* Leichtes Grid-Hintergrund */}
+      <div className="absolute inset-0 z-0 opacity-[0.22]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(15, 23, 42, 0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(15, 23, 42, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}></div>
+      </div>
+      
+      {/* Dekorative Gradient-Orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl -mr-48 -mt-48 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -ml-48 -mb-48 z-0"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ willChange: 'transform, opacity' }}
         >
           <motion.h2 
+            className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl font-bold mb-4"
-          >Leistungspakete</motion.h2>
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            Leistungspakete
+          </motion.h2>
           <motion.p 
+            className="text-xl text-slate-600 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-slate-400 text-lg"
-          >Transparent und fair. Wählen Sie, was zu Ihnen passt.</motion.p>
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            Transparent und fair. Wählen Sie, was zu Ihnen passt.
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Basic */}
+          {/* Stufe 1: bis 50 Belege */}
           <motion.div 
+            className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200/60 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-blue-500 transition-colors flex flex-col"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-white">Paket BASIC</h3>
-              <p className="text-slate-400 text-sm mt-1">Belegorganisation & Struktur</p>
+              <h3 className="text-xl font-bold text-slate-900">bis 50 Belege</h3>
+              <p className="text-slate-600 text-sm mt-1">Für kleine Unternehmen</p>
             </div>
-            <p className="text-slate-400 text-sm mb-6 min-h-[40px]">Für Selbstständige & kleine Betriebe ohne Mitarbeiter.</p>
             <div className="mb-6">
-              <span className="text-3xl font-bold text-white">ab 70 €</span>
-              <span className="text-slate-400"> / Monat</span>
-              <p className="text-xs text-slate-500 mt-1">(bei Selbst-Digitalisierung)</p>
+              <div className="mb-2">
+                <span className="text-3xl font-bold text-slate-900">150 €</span>
+                <span className="text-slate-600"> / Monat</span>
+              </div>
+              <p className="text-sm text-slate-500">brutto 178,50 €</p>
             </div>
-            <ul className="space-y-4 mb-8 flex-grow">
-              <li key="basic-1" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Vorbereitung für den Steuerberater</li>
-              <li key="basic-2" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Gewinnreport / Monat</li>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Einrichtung der Finanzbuchhaltung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Stammdaten anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Anlagenerfassung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Schnittstellen anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Bank und Kasse erfassen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Umsatzsteuer-Voranmeldung vorbereiten</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Digitale Aufbewahrung aller Dokumente und Belege</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
+              </li>
             </ul>
-            <motion.a 
-              href="#contact" 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors"
+            <button
+              onClick={handleClick}
+              disabled={isLoading}
+              className="group block w-full text-center py-4 px-6 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 rounded-xl text-white font-semibold transition-all duration-300 shadow-[0_4px_16px_-2px_rgba(15,23,42,0.2)] hover:shadow-[0_6px_24px_-4px_rgba(15,23,42,0.3)] border border-slate-500/30 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
             >
-              Anfragen
-            </motion.a>
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Anfragen
+              </span>
+            </button>
           </motion.div>
 
-          {/* Plus */}
+          {/* Stufe 2: bis 80 Belege */}
           <motion.div 
+            className="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 rounded-3xl p-10 border-2 border-blue-400/60 shadow-2xl scale-115 relative flex flex-col z-10 ring-4 ring-blue-500/30"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-blue-600 rounded-2xl p-8 border border-blue-500 shadow-2xl scale-105 relative flex flex-col z-10"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
           >
-            <div className="absolute top-0 right-0 bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+            <div className="absolute -top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 text-xs font-bold px-4 py-2 rounded-full shadow-lg z-20"
+            >
               BELIEBT
             </div>
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-white">Paket PLUS</h3>
-              <p className="text-blue-100 text-sm mt-1">Buchhaltung + Lohnabrechnung</p>
+            <div className="mb-5">
+              <h3 className="text-2xl font-bold text-white mb-2">bis 80 Belege</h3>
+              <p className="text-white/90 text-base mt-1 font-medium">Für mittlere Unternehmen</p>
             </div>
-            <p className="text-blue-100 text-sm mb-6 min-h-[40px]">Für Unternehmen mit Mitarbeitern.</p>
-            <div className="mb-6">
-              <span className="text-3xl font-bold text-white">ab 200 €</span>
-              <span className="text-blue-100"> / Monat</span>
-              <p className="text-xs text-blue-200 mt-1">Lohnabrechnung je MA 35–55 €</p>
+            <div className="mb-7">
+              <div className="mb-2">
+                <span className="text-4xl font-bold text-white">180 €</span>
+                <span className="text-white/90 text-lg"> / Monat</span>
+              </div>
+              <p className="text-sm text-white/85 font-medium">brutto 214,20 €</p>
             </div>
-            <ul className="space-y-4 mb-8 flex-grow">
-              <li key="plus-1" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Alles aus Paket Basic</li>
-              <li key="plus-2" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Komplette Lohnabrechnung</li>
-              <li key="plus-3" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Alle Reports & Auswertungen</li>
-              <li key="plus-4" className="flex items-start"><Check className="h-5 w-5 text-white mr-3 shrink-0" aria-hidden="true" /> Jahresübersichten inklusive</li>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Einrichtung der Finanzbuchhaltung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Stammdaten anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Anlagenerfassung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Schnittstellen anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Bank und Kasse erfassen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Umsatzsteuer-Voranmeldung vorbereiten</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Digitale Aufbewahrung aller Dokumente und Belege</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
+                <span className="text-white/95 text-sm font-medium">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
+              </li>
             </ul>
-            <motion.a 
-              href="#contact" 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="block w-full text-center py-3 px-4 bg-white hover:bg-slate-100 text-blue-600 rounded-lg font-bold transition-colors"
+            <button
+              onClick={handleClick}
+              disabled={isLoading}
+              className="group block w-full text-center py-4 px-6 bg-white hover:bg-slate-50 text-blue-700 rounded-xl font-semibold transition-all duration-300 shadow-[0_4px_20px_-2px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_30px_-4px_rgba(59,130,246,0.25)] border-2 border-white/50 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
             >
-              Jetzt starten
-            </motion.a>
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-50/0 via-blue-50/50 to-blue-50/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Jetzt starten
+              </span>
+            </button>
           </motion.div>
 
-          {/* Premium */}
+          {/* Stufe 3: ab 80 Belege */}
           <motion.div 
+            className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200/60 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-blue-500 transition-colors flex flex-col"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-white">Paket PREMIUM</h3>
-              <p className="text-slate-400 text-sm mt-1">Rundum-Betreuung</p>
+              <h3 className="text-xl font-bold text-slate-900">ab 80 Belege</h3>
+              <p className="text-slate-600 text-sm mt-1">Für größere Unternehmen</p>
             </div>
-            <p className="text-slate-400 text-sm mb-6 min-h-[40px]">Für Unternehmen, die alles abgeben wollen.</p>
             <div className="mb-6">
-              <span className="text-3xl font-bold text-white">Individuell</span>
+              <div className="mb-2">
+                <span className="text-3xl font-bold text-slate-900">250 €</span>
+                <span className="text-slate-600"> / Monat</span>
+              </div>
+              <p className="text-sm text-slate-500">brutto 297,50 €</p>
             </div>
-            <ul className="space-y-4 mb-8 flex-grow">
-              <li key="premium-1" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Vollständige Backoffice-Unterstützung</li>
-              <li key="premium-2" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Persönliche Betreuung</li>
-              <li key="premium-3" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Priorisierte Bearbeitung</li>
-              <li key="premium-4" className="flex items-start"><Check className="h-5 w-5 text-green-400 mr-3 shrink-0" aria-hidden="true" /> Maßgeschneiderte Lösungen</li>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Einrichtung der Finanzbuchhaltung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Stammdaten anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Anlagenerfassung</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Schnittstellen anlegen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Bank und Kasse erfassen</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Umsatzsteuer-Voranmeldung vorbereiten</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Digitale Aufbewahrung aller Dokumente und Belege</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-700 text-sm">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
+              </li>
             </ul>
-            <motion.a 
-              href="#contact" 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="block w-full text-center py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors"
+            <button
+              onClick={handleClick}
+              disabled={isLoading}
+              className="group block w-full text-center py-4 px-6 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 rounded-xl text-white font-semibold transition-all duration-300 shadow-[0_4px_16px_-2px_rgba(15,23,42,0.2)] hover:shadow-[0_6px_24px_-4px_rgba(15,23,42,0.3)] border border-slate-500/30 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
             >
-              Angebot anfordern
-            </motion.a>
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Angebot anfordern
+              </span>
+            </button>
           </motion.div>
         </div>
       </div>
