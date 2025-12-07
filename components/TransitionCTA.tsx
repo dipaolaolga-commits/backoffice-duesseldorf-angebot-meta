@@ -37,8 +37,8 @@ export const TransitionCTA = ({
         });
       }
     } else {
-      // Navigation zur Vorqualifizierung
-      navigateWithLoading(() => navigate('/vorqualifizierung'), 1500);
+      // Navigation zur Anfrage
+      navigateWithLoading(() => navigate('/anfrage'), 1500);
     }
   };
 

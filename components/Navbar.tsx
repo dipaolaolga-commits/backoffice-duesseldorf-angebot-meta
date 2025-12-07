@@ -60,7 +60,7 @@ export const Navbar = () => {
   const handleQualificationClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(false);
-    navigateWithLoading(() => navigate('/vorqualifizierung'), 1500);
+    navigateWithLoading(() => navigate('/anfrage'), 1500);
   };
 
   return (

@@ -9,7 +9,7 @@ export const Hero = () => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigateWithLoading(() => navigate('/vorqualifizierung'), 1500);
+    navigateWithLoading(() => navigate('/anfrage'), 1500);
   };
 
   return (

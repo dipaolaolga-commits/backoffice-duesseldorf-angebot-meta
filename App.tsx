@@ -50,7 +50,7 @@ const AppContent = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/vorqualifizierung" element={<QualificationPage />} />
+            <Route path="/anfrage" element={<QualificationPage />} />
             <Route path="/danke" element={<ThankYouPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/datenschutz" element={<DatenschutzPage />} />

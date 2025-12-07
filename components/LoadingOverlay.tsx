@@ -110,7 +110,7 @@ export const LoadingOverlay = ({ isVisible, message }: LoadingOverlayProps) => {
               transition={{ delay: 0.3, duration: 0.4 }}
               className="text-2xl md:text-3xl font-bold text-white mb-4 drop-shadow-lg"
             >
-              Ihr Vorqualifizierungs-Check startet jetzt
+              Ihre Anfrage startet jetzt
             </motion.h3>
             <motion.p
               initial={{ opacity: 0 }}
