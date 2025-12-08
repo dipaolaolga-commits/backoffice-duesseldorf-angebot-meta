@@ -79,7 +79,7 @@ export const ThankYouPage = () => {
                 className="flex items-start gap-3"
               >
                 <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-700">Wir melden uns innerhalb von 24 Stunden bei Ihnen</span>
+                <span className="text-slate-700">Wir melden uns innerhalb von 48 Stunden telefonisch oder per E-Mail bei Ihnen</span>
               </motion.li>
               <motion.li
                 initial={{ opacity: 0, x: -10 }}
@@ -112,3 +112,6 @@ export const ThankYouPage = () => {
     </motion.div>
   );
 };
+
+
+

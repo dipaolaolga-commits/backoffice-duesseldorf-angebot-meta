@@ -7,14 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Lato', 'sans-serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
               display: ['Outfit', 'sans-serif'],
+            },
+            colors: {
+              premium: {
+                50: '#f0f4ff',
+                100: '#e0e9ff',
+                200: '#c7d7fe',
+                300: '#a5bffd',
+                400: '#809dfa',
+                500: '#5c78f4',
+                600: '#4158e8',
+                700: '#3346d5',
+                800: '#2c3aac',
+                900: '#283688',
+                950: '#1c2252',
+              },
+              gold: {
+                400: '#d4a853',
+                500: '#c9952f',
+                600: '#a87d26',
+              }
+            },
+            boxShadow: {
+              'premium': '0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 12px 24px -8px rgba(0, 0, 0, 0.04)',
+              'premium-lg': '0 35px 60px -15px rgba(0, 0, 0, 0.1), 0 20px 35px -10px rgba(0, 0, 0, 0.06)',
+              'premium-glow': '0 0 30px rgba(37, 99, 235, 0.15), 0 0 60px rgba(37, 99, 235, 0.08)',
             },
           },
         },
@@ -22,11 +47,13 @@
     </script>
     <style>
       body {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Inter', system-ui, sans-serif;
         scroll-behavior: smooth;
+        letter-spacing: -0.01em;
       }
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Outfit', sans-serif;
+        letter-spacing: -0.02em;
       }
     </style>
   <script type="importmap">

@@ -35,22 +35,21 @@ export const QualificationPage = () => {
       ],
     },
     {
-      id: 'payroll',
-      question: 'Benötigen Sie Lohnabrechnung?',
-      options: [
-        { value: 'ja', label: 'Ja, definitiv' },
-        { value: 'vielleicht', label: 'Vielleicht in Zukunft' },
-        { value: 'nein', label: 'Nein, nicht nötig' },
-      ],
-    },
-    {
       id: 'documents',
       question: 'Wie viele Belege kommen monatlich ungefähr?',
       options: [
-        { value: '<50', label: 'Weniger als 50 Belege' },
-        { value: '50-200', label: '50-200 Belege' },
-        { value: '200-500', label: '200-500 Belege' },
-        { value: '500+', label: 'Mehr als 500 Belege' },
+        { value: '50', label: '50' },
+        { value: '80', label: '80' },
+        { value: 'ab80', label: 'ab 80' },
+      ],
+    },
+    {
+      id: 'payroll',
+      question: 'Was benötigen Sie?',
+      options: [
+        { value: 'finanzbuchhaltung', label: 'Finanzbuchhaltung' },
+        { value: 'lohnbuchhaltung', label: 'Lohnbuchhaltung' },
+        { value: 'beides', label: 'Beides' },
       ],
     },
     {
@@ -100,7 +99,7 @@ export const QualificationPage = () => {
       reasons.push('Ideal für kleine Unternehmen');
     }
     
-    if (formData.documents === '50-200' || formData.documents === '200-500') {
+    if (formData.documents === '50' || formData.documents === '80' || formData.documents === 'ab80') {
       score += 2;
       reasons.push('Optimale Beleganzahl für unseren Service');
     }

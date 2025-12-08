@@ -1,132 +1,119 @@
 import { motion } from 'framer-motion';
-import { MessageSquare, FileText, CheckCircle2, TrendingUp } from 'lucide-react';
+import { MessageSquare, FileText, CheckCircle2, TrendingUp, LucideIcon } from 'lucide-react';
 
 interface ProcessStep {
   id: string;
   number: string;
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
 }
 
 export const ProcessSection = () => {
+  const premiumEase = [0.25, 0.1, 0.25, 1];
+  
   const steps: ProcessStep[] = [
     {
       id: 'process-1',
       number: '01',
-      title: 'Erstgespräch & Analyse',
-      description: 'Wir lernen Sie und Ihr Unternehmen kennen. Gemeinsam analysieren wir Ihre aktuelle Situation und identifizieren Optimierungspotenziale.',
+      title: 'Erstgespräch',
+      description: 'Wir lernen Sie und Ihr Unternehmen kennen und analysieren Ihre aktuelle Situation.',
       icon: MessageSquare,
     },
     {
       id: 'process-2',
       number: '02',
-      title: 'Individuelles Angebot',
-      description: 'Basierend auf Ihren Bedürfnissen erstellen wir ein maßgeschneidertes Paket. Transparent, fair und ohne versteckte Kosten.',
+      title: 'Angebot',
+      description: 'Nach dem Erstgespräch wissen wir genau, welche Leistungen Sie benötigen und erstellen Ihnen daraufhin ein konkretes Angebot, das Ihren tatsächlichen Bedarf abbildet.',
       icon: FileText,
     },
     {
       id: 'process-3',
       number: '03',
-      title: 'Schnelle Einrichtung',
-      description: 'Innerhalb von 7 Tagen sind Sie startklar. Wir richten alles ein, verbinden uns mit Ihrem Steuerberater und übernehmen sofort.',
+      title: 'Start',
+      description: 'Sobald wir alle erforderlichen Unterlagen von Ihnen erhalten haben, können wir sofort starten.',
       icon: CheckCircle2,
     },
     {
       id: 'process-4',
       number: '04',
-      title: 'Laufende Betreuung',
-      description: 'Monat für Monat sorgen wir für Ordnung, Klarheit und Planbarkeit. Sie haben immer den Überblick und können sich auf Ihr Geschäft konzentrieren.',
+      title: 'Betreuung',
+      description: 'Monat für Monat sorgen wir für Ordnung, Klarheit und Planbarkeit.',
       icon: TrendingUp,
     },
   ];
 
   return (
-    <section className="py-28 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 relative overflow-hidden">
-      {/* Background pattern */}
+    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgb(15 23 42) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(15 23 42) 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
         }}></div>
       </div>
       
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -ml-48 -mb-48"></div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div 
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ willChange: 'transform, opacity' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: premiumEase }}
         >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
+          <span className="inline-block text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4">
+            Unser Prozess
+          </span>
+          
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
             So funktioniert die Zusammenarbeit
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            Transparent, einfach und zuverlässig. Von der ersten Kontaktaufnahme bis zur laufenden Betreuung.
-          </motion.p>
+          </h2>
+          
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Von der ersten Kontaktaufnahme bis zur laufenden Betreuung – 
+            transparent, einfach und zuverlässig.
+          </p>
         </motion.div>
 
+        {/* Process Steps */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
               <motion.div
                 key={step.id}
-                className="relative group"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1), ease: [0.22, 1, 0.36, 1] }}
-                style={{ willChange: 'transform, opacity' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1 + (index * 0.1), ease: premiumEase }}
+                className="relative group"
               >
-                {/* Connecting line (only between steps) */}
+                {/* Connecting line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-blue-300 via-blue-400 to-transparent z-0">
-                    <div className="h-full w-full bg-gradient-to-r from-blue-500 to-indigo-500 origin-left" />
+                  <div className="hidden lg:block absolute top-10 left-full w-full h-[2px] bg-slate-100 z-0">
+                    <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-slate-300 to-transparent" />
                   </div>
                 )}
                 
-                <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-slate-200/60 hover:border-blue-300 transition-all duration-500 h-full">
-                  {/* Step number badge */}
-                  <div className="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-blue-500/80 via-indigo-500/80 to-blue-600/80 rounded-xl flex items-center justify-center border border-white/80 shadow-md">
-                    <span className="text-sm font-semibold text-white">{step.number}</span>
+                <div className="relative bg-slate-50/80 hover:bg-white rounded-2xl p-6 border border-slate-100 hover:border-slate-200 hover:shadow-xl transition-all duration-500 h-full">
+                  {/* Step number */}
+                  <div className="absolute -top-3 -left-1 px-2.5 py-1 bg-slate-900 rounded-lg text-xs font-bold text-white">
+                    {step.number}
                   </div>
                   
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center mb-6 border border-blue-200/50 group-hover:from-blue-200 group-hover:to-indigo-200 transition-all duration-300">
-                    <Icon className="h-8 w-8 text-blue-700" />
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5 group-hover:bg-blue-100 transition-colors duration-300">
+                    <Icon className="h-6 w-6 text-blue-600" />
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
                     {step.title}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed">
                     {step.description}
                   </p>
-                  
-                  {/* Subtle gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-50/0 group-hover:from-blue-50/20 group-hover:via-blue-50/10 group-hover:to-blue-50/20 transition-all duration-300 rounded-3xl pointer-events-none"></div>
                 </div>
               </motion.div>
             );
@@ -136,4 +123,3 @@ export const ProcessSection = () => {
     </section>
   );
 };
-

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Loader2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 import { useLoading } from '../contexts/LoadingContext';
@@ -23,37 +23,28 @@ export const Navbar = () => {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    setIsOpen(false); // Menü sofort schließen
+    setIsOpen(false);
     
-    // Wenn nicht auf Homepage, zur Homepage navigieren
     if (location.pathname !== '/') {
       window.location.href = `/${href}`;
       return;
     }
     
-    // Auf Homepage: Smooth scrollen mit kurzer Verzögerung für bessere Performance
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
-        const offset = 80; // Navbar Höhe
+        const offset = 80;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: 'smooth'
-        });
-      } else {
-        // Fallback: Normaler Link, falls Element nicht gefunden wird
-        window.location.href = href;
+        window.scrollTo({ top: Math.max(0, offsetPosition), behavior: 'smooth' });
       }
-    }, 100); // Kleine Verzögerung, damit das Menü zuerst geschlossen wird
+    }, 100);
   };
 
   const navLinks = [
-    { name: 'Problem', href: '#problem' },
-    { name: 'Lösung', href: '#solution' },
+    { name: 'Leistungen', href: '#solution' },
     { name: 'Preise', href: '#pricing' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Kontakt', href: '#contact' },
   ];
   
@@ -64,129 +55,107 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-white/90 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] py-3' 
+        : 'bg-transparent py-5'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex-shrink-0">
-            <Logo isScrolled={isScrolled} />
+          <Link to="/" className="flex-shrink-0 group">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Logo isScrolled={isScrolled} />
+            </motion.div>
           </Link>
           
-          <div className="hidden md:flex space-x-8 items-center flex-1 justify-center mx-8">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleSmoothScroll(e, link.href)}
-                className="font-medium hover:text-blue-600 transition-colors text-slate-700"
-                aria-label={`Navigiere zu ${link.name}`}
+                className="relative px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-300 group"
               >
                 {link.name}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-slate-900 group-hover:w-1/2 transition-all duration-300"></span>
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex flex-shrink-0 ml-auto">
-            <button
+          {/* Desktop CTA */}
+          <div className="hidden md:flex flex-shrink-0">
+            <motion.button
               onClick={handleQualificationClick}
               disabled={isLoading}
-              className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-[0_2px_12px_-2px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_16px_-2px_rgba(37,99,235,0.4)] disabled:opacity-75 disabled:cursor-wait flex items-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-75"
             >
-              Angebot anfordern
-            </button>
+              Anfrage starten
+            </motion.button>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center ml-auto">
             <motion.button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="text-slate-700 hover:text-blue-600"
-              aria-label={isOpen ? 'Menü schließen' : 'Menü öffnen'}
-              aria-expanded={isOpen}
-              whileTap={{ scale: 0.9 }}
-              style={{ willChange: 'transform' }}
+              className="p-2 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
+              whileTap={{ scale: 0.95 }}
             >
               <motion.div
                 animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ 
-                  duration: 0.25, 
-                  ease: [0.25, 0.1, 0.25, 1]
-                }}
-                style={{ willChange: 'transform' }}
+                transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                {isOpen ? <X size={22} /> : <Menu size={22} />}
               </motion.div>
             </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Premium Style */}
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, maxHeight: 0 }}
-            animate={{ opacity: 1, maxHeight: 500 }}
-            exit={{ opacity: 0, maxHeight: 0 }}
-            transition={{ 
-              duration: 0.25, 
-              ease: [0.25, 0.1, 0.25, 1],
-              opacity: { duration: 0.2 }
-            }}
-            style={{ willChange: 'transform, opacity, max-height' }}
-            className="md:hidden absolute top-full right-0 w-full bg-white shadow-lg overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="md:hidden absolute top-full right-0 left-0 bg-white/95 backdrop-blur-xl border-t border-slate-100 shadow-lg overflow-hidden"
           >
-            <motion.div
-              initial={{ y: -10 }}
-              animate={{ y: 0 }}
-              exit={{ y: -10 }}
-              transition={{ 
-                duration: 0.25, 
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
-              style={{ willChange: 'transform' }}
-              className="py-4 px-4 flex flex-col space-y-4"
-            >
+            <div className="py-4 px-6 space-y-1">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    handleSmoothScroll(e, link.href);
-                    setIsOpen(false);
-                  }}
-                  initial={{ opacity: 0, x: 10 }}
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
-                    delay: index * 0.05,
-                    duration: 0.2,
-                    ease: [0.25, 0.1, 0.25, 1]
-                  }}
-                  style={{ willChange: 'transform, opacity' }}
-                  className="text-slate-700 font-medium py-2 border-b border-slate-100 hover:text-blue-600"
-                  aria-label={`Navigiere zu ${link.name}`}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  className="block py-3 px-4 text-slate-700 font-medium hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
                 >
                   {link.name}
                 </motion.a>
               ))}
               <motion.div
-                initial={{ opacity: 0, x: 10 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ 
-                  delay: navLinks.length * 0.05,
-                  duration: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1]
-                }}
-                style={{ willChange: 'transform, opacity' }}
-                className="pt-2"
+                transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
+                className="pt-3 mt-3 border-t border-slate-100"
               >
                 <button
                   onClick={handleQualificationClick}
                   disabled={isLoading}
-                  className="block w-full text-center py-3 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-[0_2px_12px_-2px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_16px_-2px_rgba(37,99,235,0.4)] disabled:opacity-75 disabled:cursor-wait flex items-center justify-center gap-2"
+                  className="w-full py-3.5 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-75"
                 >
-                    Angebot anfordern
+                  Anfrage starten
                 </button>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -7,7 +7,6 @@ import { AgitationSection } from './components/AgitationSection';
 import { SolutionSection } from './components/SolutionSection';
 import { WhyUsSection } from './components/WhyUsSection';
 import { PricingSection } from './components/PricingSection';
-import { LegalSection } from './components/LegalSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { QualificationPage } from './components/QualificationPage';
@@ -19,6 +18,7 @@ import { FAQSection } from './components/FAQSection';
 import { ImpressumPage } from './components/ImpressumPage';
 import { DatenschutzPage } from './components/DatenschutzPage';
 import { ThankYouPage } from './components/ThankYouPage';
+import { CookieBanner } from './components/CookieBanner';
 import { LoadingProvider } from './contexts/LoadingContext';
 import { ScrollToTop } from './components/ScrollToTop';
 
@@ -35,7 +35,6 @@ const HomePage = () => {
       <ComparisonSection />
       <WhyUsSection />
       <PricingSection />
-      <LegalSection />
       <FAQSection />
       <CTASection />
     </>
@@ -59,6 +58,7 @@ const AppContent = () => {
         <Footer />
       </div>
       <ScrollToTop />
+      <CookieBanner />
     </>
   );
 };

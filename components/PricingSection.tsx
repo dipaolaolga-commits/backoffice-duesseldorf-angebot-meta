@@ -1,288 +1,169 @@
 import { useNavigate } from 'react-router-dom';
-import { Check, Loader2 } from 'lucide-react';
+import { Check, ArrowRight, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
 
 export const PricingSection = () => {
   const navigate = useNavigate();
   const { navigateWithLoading, isLoading } = useLoading();
+  const premiumEase = [0.25, 0.1, 0.25, 1];
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     navigateWithLoading(() => navigate('/anfrage'), 1500);
   };
 
+  const plans = [
+    {
+      name: 'Starter',
+      subtitle: 'bis 50 Belege',
+      price: '150',
+      brutto: '178,50',
+      popular: false,
+    },
+    {
+      name: 'Business',
+      subtitle: 'bis 80 Belege',
+      price: '180',
+      brutto: '214,20',
+      popular: true,
+    },
+    {
+      name: 'Premium',
+      subtitle: 'ab 80 Belege',
+      price: '250',
+      brutto: '297,50',
+      popular: false,
+    },
+  ];
+
+  const features = [
+    'Einrichtung der Finanzbuchhaltung',
+    'Bank- und Kassenerfassung',
+    'Umsatzsteuer-Vorbereitung',
+    'Monatsreport mit Gewinnübersicht',
+    'Digitale Belegaufbewahrung',
+    'Vorbereitung der EÜR',
+  ];
+
   return (
-    <section id="pricing" className="py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
-      {/* Leichtes Grid-Hintergrund */}
-      <div className="absolute inset-0 z-0 opacity-[0.22]">
+    <section id="pricing" className="py-24 lg:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.20]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(15, 23, 42, 0.15) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(15, 23, 42, 0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(15 23 42) 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
         }}></div>
       </div>
       
-      {/* Dekorative Gradient-Orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl -mr-48 -mt-48 z-0"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -ml-48 -mb-48 z-0"></div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ willChange: 'transform, opacity' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: premiumEase }}
         >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
+          <motion.span 
+            className="inline-block text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4"
           >
-            Leistungspakete
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-slate-600 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            Transparent und fair. Wählen Sie, was zu Ihnen passt.
-          </motion.p>
+            Preise
+          </motion.span>
+          
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+            Transparent & fair.
+          </h2>
+          
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Wählen Sie das Paket, das zu Ihrem Unternehmen passt. 
+            Keine versteckten Kosten, keine Überraschungen.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Stufe 1: bis 50 Belege */}
-          <motion.div 
-            className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200/60 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-slate-900">bis 50 Belege</h3>
-              <p className="text-slate-600 text-sm mt-1">Für kleine Unternehmen</p>
-            </div>
-            <div className="mb-6">
-              <div className="mb-2">
-                <span className="text-3xl font-bold text-slate-900">150 €</span>
-                <span className="text-slate-600"> / Monat</span>
-              </div>
-              <p className="text-sm text-slate-500">brutto 178,50 €</p>
-            </div>
-            <ul className="space-y-3 mb-8 flex-grow">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Einrichtung der Finanzbuchhaltung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Stammdaten anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Anlagenerfassung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Schnittstellen anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Bank und Kasse erfassen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Umsatzsteuer-Voranmeldung vorbereiten</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Digitale Aufbewahrung aller Dokumente und Belege</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
-              </li>
-            </ul>
-            <button
-              onClick={handleClick}
-              disabled={isLoading}
-              className="group block w-full text-center py-4 px-6 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 rounded-xl text-white font-semibold transition-all duration-300 shadow-[0_4px_16px_-2px_rgba(15,23,42,0.2)] hover:shadow-[0_6px_24px_-4px_rgba(15,23,42,0.3)] border border-slate-500/30 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-12">
+          {plans.map((plan, index) => (
+            <motion.div 
+              key={plan.name}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 + (index * 0.1), ease: premiumEase }}
+              className="relative flex flex-col"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Anfragen
-              </span>
-            </button>
-          </motion.div>
-
-          {/* Stufe 2: bis 80 Belege */}
-          <motion.div 
-            className="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 rounded-3xl p-10 border-2 border-blue-400/60 shadow-2xl scale-115 relative flex flex-col z-10 ring-4 ring-blue-500/30"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <div className="mb-5">
-              <h3 className="text-2xl font-bold text-white mb-2">bis 80 Belege</h3>
-              <p className="text-white/90 text-base mt-1 font-medium">Für mittlere Unternehmen</p>
-            </div>
-            <div className="mb-7">
-              <div className="mb-2">
-                <span className="text-4xl font-bold text-white">180 €</span>
-                <span className="text-white/90 text-lg"> / Monat</span>
+              <div className={`
+                flex-1 rounded-2xl p-7 lg:p-8 border transition-all duration-500
+                bg-white border-slate-200 hover:border-slate-300 hover:shadow-xl
+              `}>
+                {/* Plan Header */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-1 text-slate-900">
+                    {plan.name}
+                  </h3>
+                  <p className="text-sm text-slate-500">
+                    {plan.subtitle}
+                  </p>
+                </div>
+                
+                {/* Price */}
+                <div className="mb-6">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold text-slate-900">
+                      {plan.price} €
+                    </span>
+                    <span className="text-sm text-slate-500">
+                      / Monat
+                    </span>
+                  </div>
+                  <p className="text-xs mt-1 text-slate-400">
+                    brutto {plan.brutto} €
+                  </p>
+                </div>
+                
+                {/* Features */}
+                <ul className="space-y-3 mb-8">
+                  {features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-emerald-50">
+                        <Check className="h-3 w-3 text-emerald-600" />
+                      </div>
+                      <span className="text-sm text-slate-600">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                
+                {/* CTA Button */}
+                <motion.button
+                  onClick={handleClick}
+                  disabled={isLoading}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-75"
+                >
+                  Jetzt starten
+                  <ArrowRight className="h-4 w-4" />
+                </motion.button>
               </div>
-              <p className="text-sm text-white/85 font-medium">brutto 214,20 €</p>
-            </div>
-            <ul className="space-y-3 mb-8 flex-grow">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Einrichtung der Finanzbuchhaltung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Stammdaten anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Anlagenerfassung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Schnittstellen anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Bank und Kasse erfassen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Umsatzsteuer-Voranmeldung vorbereiten</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Digitale Aufbewahrung aller Dokumente und Belege</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-white mr-3 shrink-0 mt-0.5" aria-hidden="true" strokeWidth={3} />
-                <span className="text-white/95 text-sm font-medium">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
-              </li>
-            </ul>
-            <button
-              onClick={handleClick}
-              disabled={isLoading}
-              className="group block w-full text-center py-4 px-6 bg-white hover:bg-slate-50 text-blue-700 rounded-xl font-semibold transition-all duration-300 shadow-[0_4px_20px_-2px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_30px_-4px_rgba(59,130,246,0.25)] border-2 border-white/50 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-50/0 via-blue-50/50 to-blue-50/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Jetzt starten
-              </span>
-            </button>
-          </motion.div>
-
-          {/* Stufe 3: ab 80 Belege */}
-          <motion.div 
-            className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200/60 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-slate-900">ab 80 Belege</h3>
-              <p className="text-slate-600 text-sm mt-1">Für größere Unternehmen</p>
-            </div>
-            <div className="mb-6">
-              <div className="mb-2">
-                <span className="text-3xl font-bold text-slate-900">250 €</span>
-                <span className="text-slate-600"> / Monat</span>
-              </div>
-              <p className="text-sm text-slate-500">brutto 297,50 €</p>
-            </div>
-            <ul className="space-y-3 mb-8 flex-grow">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Einrichtung der Finanzbuchhaltung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Stammdaten anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Anlagenerfassung</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Schnittstellen anlegen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Bank und Kasse erfassen</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Umsatzsteuer-Voranmeldung vorbereiten</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Monatsreport mit Einnahmen-, Ausgaben- und Gewinnübersicht</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Digitale Aufbewahrung aller Dokumente und Belege</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Vorbereitung der Einnahmen-Überschussrechnung (EÜR)</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-emerald-600 mr-3 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-700 text-sm">Monatliche Liste der fehlenden Belege zur Nachreichung</span>
-              </li>
-            </ul>
-            <button
-              onClick={handleClick}
-              disabled={isLoading}
-              className="group block w-full text-center py-4 px-6 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 rounded-xl text-white font-semibold transition-all duration-300 shadow-[0_4px_16px_-2px_rgba(15,23,42,0.2)] hover:shadow-[0_6px_24px_-4px_rgba(15,23,42,0.3)] border border-slate-500/30 relative overflow-hidden disabled:opacity-75 disabled:cursor-wait"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Angebot anfordern
-              </span>
-            </button>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Trust Badge */}
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5, ease: premiumEase }}
+        >
+          <div className="inline-flex items-center gap-2 text-sm text-slate-500">
+            <Shield className="h-4 w-4 text-emerald-500" />
+            <span>Jederzeit kündbar • Keine Mindestlaufzeit</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

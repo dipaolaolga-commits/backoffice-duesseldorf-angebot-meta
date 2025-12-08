@@ -9,154 +9,93 @@ interface ComparisonItem {
 }
 
 export const ComparisonSection = () => {
+  const premiumEase = [0.25, 0.1, 0.25, 1];
+  
   const comparisons: ComparisonItem[] = [
-    {
-      id: 'comp-1',
-      feature: 'Strukturierte Belegorganisation',
-      without: false,
-      withUs: true,
-    },
-    {
-      id: 'comp-2',
-      feature: 'Monatliche Gewinnübersicht',
-      without: false,
-      withUs: true,
-    },
-    {
-      id: 'comp-3',
-      feature: 'Pünktliche Lohnabrechnungen',
-      without: 'Oft verspätet',
-      withUs: 'Immer pünktlich',
-    },
-    {
-      id: 'comp-4',
-      feature: 'Zeit für Ihr Kerngeschäft',
-      without: 'Wenig Zeit',
-      withUs: 'Mehr Zeit',
-    },
-    {
-      id: 'comp-5',
-      feature: 'Klarheit über Rücklagen',
-      without: false,
-      withUs: true,
-    },
-    {
-      id: 'comp-6',
-      feature: 'Stress durch Papierkram',
-      without: 'Hoch',
-      withUs: 'Kein Stress',
-    },
-    {
-      id: 'comp-7',
-      feature: 'Fehlerrisiko',
-      without: 'Hoch',
-      withUs: 'Minimal',
-    },
-    {
-      id: 'comp-8',
-      feature: 'Kostenkontrolle',
-      without: 'Unklar',
-      withUs: 'Transparent',
-    },
+    { id: 'comp-1', feature: 'Strukturierte Belegorganisation', without: false, withUs: true },
+    { id: 'comp-2', feature: 'Monatliche Gewinnübersicht', without: false, withUs: true },
+    { id: 'comp-3', feature: 'Pünktliche Lohnabrechnungen', without: 'Oft verspätet', withUs: 'Immer pünktlich' },
+    { id: 'comp-4', feature: 'Zeit für Ihr Kerngeschäft', without: 'Wenig', withUs: 'Mehr' },
+    { id: 'comp-5', feature: 'Klarheit über Rücklagen', without: false, withUs: true },
+    { id: 'comp-6', feature: 'Stress durch Papierkram', without: 'Hoch', withUs: 'Keiner' },
   ];
 
   return (
-    <section className="py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-white relative overflow-hidden">
-      {/* Durchscheinende Hintergrundstruktur */}
-      <div className="absolute inset-0 z-0 opacity-[0.06]">
+    <section className="py-24 lg:py-32 bg-slate-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px',
-        }}></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
         }}></div>
       </div>
       
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-3xl -ml-48 -mt-48 z-0"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-3xl -mr-48 -mb-48 z-0"></div>
+      {/* Gradient Orbs */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl -ml-64 -mt-64"></div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl -mr-64 -mb-64"></div>
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ willChange: 'transform, opacity' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: premiumEase }}
         >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
+          <span className="inline-block text-sm uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4">
+            Vergleich
+          </span>
+          
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
             Mit uns vs. Ohne uns
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-slate-300 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          >
+          </h2>
+          
+          <p className="text-xl text-slate-400 leading-relaxed">
             Sehen Sie den Unterschied auf einen Blick
-          </motion.p>
+          </p>
         </motion.div>
 
+        {/* Comparison Table */}
         <motion.div 
-          className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
-          initial={{ opacity: 0, y: 20 }}
+          className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden"
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          style={{ willChange: 'transform, opacity' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: premiumEase }}
         >
-          {/* Header */}
-          <div className="grid md:grid-cols-3 gap-4 p-6 bg-white/5 border-b border-white/10">
-            <div className="md:col-span-1">
-              <h3 className="text-lg font-bold text-slate-300">Kriterium</h3>
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg font-bold text-red-400">Ohne uns</h3>
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg font-bold text-emerald-400">Mit uns</h3>
-            </div>
+          {/* Header Row */}
+          <div className="grid grid-cols-3 gap-4 p-6 bg-slate-800/80 border-b border-slate-700/50">
+            <div className="text-base font-semibold text-slate-400">Kriterium</div>
+            <div className="text-center text-base font-semibold text-red-400">Ohne uns</div>
+            <div className="text-center text-base font-semibold text-emerald-400">Mit uns</div>
           </div>
 
           {/* Comparison Items */}
-          <div className="divide-y divide-white/10">
+          <div className="divide-y divide-slate-700/50">
             {comparisons.map((item, index) => (
               <motion.div
                 key={item.id}
-                className="grid md:grid-cols-3 gap-4 p-6 hover:bg-white/5 transition-colors duration-300"
+                className="grid grid-cols-3 gap-4 p-6 hover:bg-slate-800/30 transition-colors duration-200"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.4 + (index * 0.05), ease: [0.22, 1, 0.36, 1] }}
-                style={{ willChange: 'transform, opacity' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.15 + (index * 0.04), ease: premiumEase }}
               >
-                <div className="md:col-span-1 flex items-center">
-                  <span className="text-slate-200 font-medium">{item.feature}</span>
+                <div className="flex items-center">
+                  <span className="text-slate-300 text-base font-medium">{item.feature}</span>
                 </div>
                 
                 <div className="flex items-center justify-center">
                   {typeof item.without === 'boolean' ? (
                     item.without ? (
-                      <Check className="h-6 w-6 text-emerald-400" />
+                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                        <Check className="h-5 w-5 text-emerald-400" />
+                      </div>
                     ) : (
-                      <X className="h-6 w-6 text-red-400" />
+                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center">
+                        <X className="h-5 w-5 text-red-400" />
+                      </div>
                     )
                   ) : (
                     <span className="text-red-300 text-sm font-medium">{item.without}</span>
@@ -166,9 +105,13 @@ export const ComparisonSection = () => {
                 <div className="flex items-center justify-center">
                   {typeof item.withUs === 'boolean' ? (
                     item.withUs ? (
-                      <Check className="h-6 w-6 text-emerald-400" />
+                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                        <Check className="h-5 w-5 text-emerald-400" />
+                      </div>
                     ) : (
-                      <X className="h-6 w-6 text-red-400" />
+                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center">
+                        <X className="h-5 w-5 text-red-400" />
+                      </div>
                     )
                   ) : (
                     <span className="text-emerald-300 text-sm font-medium">{item.withUs}</span>
@@ -182,4 +125,3 @@ export const ComparisonSection = () => {
     </section>
   );
 };
-
