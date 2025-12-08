@@ -98,7 +98,7 @@ export const FAQSection = () => {
                 className="w-full text-left bg-slate-50/80 hover:bg-slate-100/80 rounded-xl p-5 border border-slate-100 hover:border-slate-200 transition-all duration-300"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-base font-semibold text-slate-900 pr-4">
+                  <h3 className="text-lg font-semibold text-slate-900 pr-4">
                     {faq.question}
                   </h3>
                   <motion.div
@@ -122,7 +122,7 @@ export const FAQSection = () => {
                       className="overflow-hidden"
                     >
                       <div className="pt-4 mt-4 border-t border-slate-200">
-                        <p className="text-slate-600 leading-relaxed text-sm">
+                        <p className="text-slate-600 leading-relaxed text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -150,8 +150,8 @@ export const FAQSection = () => {
               <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center mx-auto mb-3">
                 <badge.icon className="h-5 w-5 text-emerald-600" />
               </div>
-              <h4 className="font-semibold text-slate-900 text-sm mb-0.5">{badge.title}</h4>
-              <p className="text-xs text-slate-500">{badge.subtitle}</p>
+              <h4 className="font-semibold text-slate-900 text-base mb-0.5">{badge.title}</h4>
+              <p className="text-sm text-slate-500">{badge.subtitle}</p>
             </div>
           ))}
         </motion.div>

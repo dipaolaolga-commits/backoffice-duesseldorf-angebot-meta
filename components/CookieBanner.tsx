@@ -80,7 +80,7 @@ export const CookieBanner = () => {
                 </button>
                 <button
                   onClick={handleAccept}
-                  className="flex-1 px-5 py-3 bg-blue-600 text-white font-medium text-sm rounded-xl hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                  className="flex-1 px-5 py-3 bg-slate-900 text-white font-medium text-sm rounded-xl hover:bg-slate-800 transition-colors duration-200 flex items-center justify-center gap-2"
                 >
                   <Check className="h-4 w-4" />
                   Alle akzeptieren

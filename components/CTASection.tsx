@@ -20,14 +20,18 @@ export const CTASection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+    <section id="contact" className="py-24 lg:py-32 bg-slate-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(15 23 42) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
           backgroundSize: '48px 48px'
         }}></div>
       </div>
+      
+      {/* Gradient Orbs */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl -ml-64 -mt-64"></div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl -mr-64 -mb-64"></div>
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -35,15 +39,13 @@ export const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: premiumEase }}
-          className="bg-gradient-to-br from-blue-800/90 via-blue-700/90 to-blue-800/90 rounded-3xl p-8 md:p-12 lg:p-16 text-center relative overflow-hidden"
+          className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 lg:p-16 text-center relative overflow-hidden border border-slate-700/50"
         >
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-indigo-600/5"></div>
           
           {/* Content */}
           <div className="relative z-10">
             <motion.span 
-              className="inline-block text-xs uppercase tracking-[0.2em] text-blue-200 font-semibold mb-4"
+              className="inline-block text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -63,7 +65,7 @@ export const CTASection = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-lg text-blue-100 mb-8 max-w-xl mx-auto"
+              className="text-lg text-slate-300 mb-8 max-w-xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -81,8 +83,8 @@ export const CTASection = () => {
               transition={{ duration: 0.6, delay: 0.25, ease: premiumEase }}
             >
               {benefits.map((benefit, index) => (
-                <span key={index} className="flex items-center gap-2 text-sm text-blue-50">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-300" />
+                <span key={index} className="flex items-center gap-2 text-sm text-slate-300">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   {benefit}
                 </span>
               ))}
@@ -100,7 +102,7 @@ export const CTASection = () => {
                 disabled={isLoading}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group inline-flex items-center justify-center bg-white text-blue-700 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 transition-all duration-300 disabled:opacity-75"
+                className="group inline-flex items-center justify-center bg-white text-slate-900 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 transition-all duration-300 disabled:opacity-75"
               >
                 Erstgespräch vereinbaren
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />

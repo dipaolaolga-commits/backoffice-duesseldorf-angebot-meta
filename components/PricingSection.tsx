@@ -98,10 +98,10 @@ export const PricingSection = () => {
               `}>
                 {/* Plan Header */}
                 <div className="mb-6">
-                  <h3 className="text-lg font-bold mb-1 text-slate-900">
+                  <h3 className="text-xl font-bold mb-1 text-slate-900">
                     {plan.name}
                   </h3>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-base text-slate-500">
                     {plan.subtitle}
                   </p>
                 </div>
@@ -128,7 +128,7 @@ export const PricingSection = () => {
                       <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-emerald-50">
                         <Check className="h-3 w-3 text-emerald-600" />
                       </div>
-                      <span className="text-sm text-slate-600">
+                      <span className="text-base text-slate-600">
                         {feature}
                       </span>
                     </li>
@@ -141,7 +141,7 @@ export const PricingSection = () => {
                   disabled={isLoading}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-75"
+                  className="w-full py-3.5 px-6 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-75"
                 >
                   Jetzt starten
                   <ArrowRight className="h-4 w-4" />

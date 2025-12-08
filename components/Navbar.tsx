@@ -93,7 +93,7 @@ export const Navbar = () => {
               disabled={isLoading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-75"
+              className="px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-75"
             >
               Anfrage starten
             </motion.button>
@@ -150,7 +150,7 @@ export const Navbar = () => {
                 <button
                   onClick={handleQualificationClick}
                   disabled={isLoading}
-                  className="w-full py-3.5 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-75"
+                  className="w-full py-3.5 px-4 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors disabled:opacity-75"
                 >
                   Anfrage starten
                 </button>

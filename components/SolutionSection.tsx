@@ -27,13 +27,13 @@ const FeatureCard = ({ title, icon: Icon, items, index }: FeatureCardProps) => {
           </div>
         </div>
         
-        <h3 className="text-lg font-bold text-slate-900 mb-5 group-hover:text-blue-700 transition-colors duration-300">
+        <h3 className="text-xl font-bold text-slate-900 mb-5 group-hover:text-blue-700 transition-colors duration-300">
           {title}
         </h3>
         
         <ul className="space-y-3">
           {items.map((item, idx) => (
-            <li key={idx} className="flex items-start text-slate-600 text-sm">
+            <li key={idx} className="flex items-start text-slate-600 text-base">
               <div className="mt-0.5 mr-3 flex-shrink-0">
                 <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center">
                   <Check className="h-3 w-3 text-emerald-600" />

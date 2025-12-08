@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Calendar, CheckCircle2, Rocket, ArrowRight, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { images } from '../config/images';
 
 interface Step {
   id: string;
@@ -30,7 +31,7 @@ export const QuickStartSection = () => {
       title: 'Kurzer Check',
       description: 'In 60 Sekunden wissen Sie, ob unser Service zu Ihnen passt.',
       icon: Calendar,
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop&q=80',
+      image: images.quickStart.step1,
     },
     {
       id: 'step-2',
@@ -38,7 +39,7 @@ export const QuickStartSection = () => {
       title: 'Angebot',
       description: 'Sie erhalten ein maßgeschneidertes, transparentes Angebot.',
       icon: CheckCircle2,
-      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&q=80',
+      image: images.quickStart.step2,
     },
     {
       id: 'step-3',
@@ -46,7 +47,7 @@ export const QuickStartSection = () => {
       title: 'Start',
       description: 'Innerhalb von 7 Tagen sind Sie startklar mit Klarheit und Ordnung.',
       icon: Rocket,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
+      image: images.quickStart.step3,
     },
   ];
 
@@ -153,7 +154,7 @@ export const QuickStartSection = () => {
             disabled={isLoading}
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 hover:from-blue-700 hover:via-blue-800 hover:to-blue-700 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(37,99,235,0.4)] transition-all duration-300 disabled:opacity-75"
+            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl text-white bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-75"
           >
             Jetzt starten
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />

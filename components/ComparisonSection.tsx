@@ -65,10 +65,10 @@ export const ComparisonSection = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: premiumEase }}
         >
           {/* Header Row */}
-          <div className="grid grid-cols-3 gap-4 p-6 bg-slate-800/80 border-b border-slate-700/50">
-            <div className="text-base font-semibold text-slate-400">Kriterium</div>
-            <div className="text-center text-base font-semibold text-red-400">Ohne uns</div>
-            <div className="text-center text-base font-semibold text-emerald-400">Mit uns</div>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 p-4 sm:p-6 bg-slate-800/80 border-b border-slate-700/50">
+            <div className="text-sm sm:text-base font-semibold text-slate-400">Kriterium</div>
+            <div className="text-center text-sm sm:text-base font-semibold text-red-400">Ohne uns</div>
+            <div className="text-center text-sm sm:text-base font-semibold text-emerald-400">Mit uns</div>
           </div>
 
           {/* Comparison Items */}
@@ -76,45 +76,45 @@ export const ComparisonSection = () => {
             {comparisons.map((item, index) => (
               <motion.div
                 key={item.id}
-                className="grid grid-cols-3 gap-4 p-6 hover:bg-slate-800/30 transition-colors duration-200"
+                className="grid grid-cols-3 gap-2 sm:gap-4 p-4 sm:p-6 hover:bg-slate-800/30 transition-colors duration-200"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.15 + (index * 0.04), ease: premiumEase }}
               >
-                <div className="flex items-center">
-                  <span className="text-slate-300 text-base font-medium">{item.feature}</span>
+                <div className="flex items-center min-w-0">
+                  <span className="text-slate-300 text-sm sm:text-base font-medium leading-snug break-words">{item.feature}</span>
                 </div>
                 
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center min-w-0">
                   {typeof item.without === 'boolean' ? (
                     item.without ? (
-                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
                         <Check className="h-5 w-5 text-emerald-400" />
                       </div>
                     ) : (
-                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
                         <X className="h-5 w-5 text-red-400" />
                       </div>
                     )
                   ) : (
-                    <span className="text-red-300 text-sm font-medium">{item.without}</span>
+                    <span className="text-red-300 text-xs sm:text-sm font-medium text-center leading-tight break-words">{item.without}</span>
                   )}
                 </div>
                 
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center min-w-0">
                   {typeof item.withUs === 'boolean' ? (
                     item.withUs ? (
-                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
                         <Check className="h-5 w-5 text-emerald-400" />
                       </div>
                     ) : (
-                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
                         <X className="h-5 w-5 text-red-400" />
                       </div>
                     )
                   ) : (
-                    <span className="text-emerald-300 text-sm font-medium">{item.withUs}</span>
+                    <span className="text-emerald-300 text-xs sm:text-sm font-medium text-center leading-tight break-words">{item.withUs}</span>
                   )}
                 </div>
               </motion.div>

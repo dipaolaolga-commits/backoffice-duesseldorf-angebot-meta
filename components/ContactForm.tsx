@@ -193,7 +193,7 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 text-lg"
+              className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 text-lg"
             >
               <Send className="h-5 w-5" />
               Anfrage absenden

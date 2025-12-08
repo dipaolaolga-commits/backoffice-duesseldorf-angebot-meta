@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Shield, Award, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { images } from '../config/images';
 
 export const Hero = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0">
         {/* Background Image */}
         <img 
-          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&q=80" 
+          src={images.hero.background} 
           alt="Professionelles Büro" 
           className="hidden md:block w-full h-full object-cover"
           style={{ opacity: 0.20 }}
@@ -74,10 +75,35 @@ export const Hero = () => {
           >
             <span className="inline-flex items-center gap-2.5 py-2 px-5 rounded-full bg-slate-900/5 backdrop-blur-sm border border-slate-200/60 text-slate-700 text-sm font-medium tracking-wide">
               <motion.div
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ 
+                  scale: [1, 1.12, 1],
+                  rotate: [0, 3, -3, 0],
+                  y: [0, -2, 0]
+                }}
+                transition={{ 
+                  duration: 3.5, 
+                  repeat: Infinity, 
+                  ease: [0.4, 0, 0.6, 1],
+                  repeatDelay: 0.3
+                }}
+                className="relative"
               >
-                <Shield className="h-4 w-4 text-blue-600" />
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.5, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    background: "radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%)"
+                  }}
+                />
+                <Shield className="h-4 w-4 text-blue-600 relative z-10" />
               </motion.div>
               <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 bg-clip-text text-transparent font-semibold">
                 Ihr zuverlässiger Backoffice-Partner
@@ -127,9 +153,8 @@ export const Hero = () => {
               disabled={isLoading}
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-8 py-4 text-lg font-semibold rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 hover:from-blue-700 hover:via-blue-800 hover:to-blue-700 shadow-[0_4px_20px_-2px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(37,99,235,0.4)] transition-all duration-500 overflow-hidden disabled:opacity-75"
+              className="group relative px-8 py-4 text-lg font-semibold rounded-xl text-white bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-75"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Erstgespräch vereinbaren
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />

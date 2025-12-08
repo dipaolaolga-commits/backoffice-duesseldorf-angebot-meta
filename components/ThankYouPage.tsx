@@ -101,7 +101,7 @@ export const ThankYouPage = () => {
           >
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Zurück zur Startseite
               <ArrowRight className="h-5 w-5" />

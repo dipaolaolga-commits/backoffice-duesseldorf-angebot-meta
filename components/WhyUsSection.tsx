@@ -1,5 +1,6 @@
 import { Shield, MessageCircle, Sparkles, Zap, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { images } from '../config/images';
 
 interface Strength {
   id: string;
@@ -128,8 +129,8 @@ export const WhyUsSection = () => {
                           <Icon className="h-5 w-5 text-blue-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-slate-900 mb-1 text-sm">{item.title}</h3>
-                          <p className="text-slate-600 text-sm leading-relaxed">{item.text}</p>
+                          <h3 className="font-semibold text-slate-900 mb-1 text-base">{item.title}</h3>
+                          <p className="text-slate-600 text-base leading-relaxed">{item.text}</p>
                         </div>
                       </div>
                     </div>
@@ -149,7 +150,7 @@ export const WhyUsSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&q=80" 
+                src={images.whyUs.main} 
                 alt="Professionelle Partnerschaft" 
                 className="w-full h-[500px] object-cover"
                 loading="lazy"

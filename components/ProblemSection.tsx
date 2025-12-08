@@ -1,5 +1,6 @@
 import { AlertCircle, Clock, TrendingDown, FileX, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { images } from '../config/images';
 
 interface Problem {
   id: string;
@@ -129,7 +130,7 @@ export const ProblemSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop&q=80" 
+                src={images.problem.main} 
                 alt="Stressige Büroarbeit" 
                 className="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -143,7 +144,7 @@ export const ProblemSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5, ease: premiumEase }}
-              className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-5 border border-slate-100"
+              className="absolute -bottom-6 left-4 md:-left-6 bg-white rounded-xl shadow-xl p-5 border border-slate-100"
             >
               <p className="text-3xl font-bold text-red-600 mb-1">15h+</p>
               <p className="text-sm text-slate-600">verlorene Zeit pro Monat</p>

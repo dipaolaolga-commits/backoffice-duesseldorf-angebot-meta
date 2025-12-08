@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Shield, Mail, Phone } from 'lucide-react';
+import { Shield, Mail } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -51,14 +51,8 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 text-slate-500" />
-                <a href="mailto:info@backoffice-pro.de" className="hover:text-white transition-colors">
-                  info@backoffice-pro.de
-                </a>
-              </li>
-              <li className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 text-slate-500" />
-                <a href="tel:+4912345678" className="hover:text-white transition-colors">
-                  +49 123 456 78
+                <a href="mailto:info@backoffice-düsseldorf.de" className="hover:text-white transition-colors">
+                  info@backoffice-düsseldorf.de
                 </a>
               </li>
             </ul>
