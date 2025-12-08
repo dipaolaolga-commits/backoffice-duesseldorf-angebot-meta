@@ -35,6 +35,9 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Debug: Log die erhaltenen QualificationData
+  console.log('ContactForm - QualificationData erhalten:', qualificationData);
+
   const sendToPabblyWebhook = async (data: any) => {
     try {
       const response = await fetch(webhooks.pabbly.url, {
@@ -62,28 +65,41 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Alle Daten zusammenfassen
+    // Alle Daten zusammenfassen - verwende Labels (vollständige Texte) als primäre Werte
     const allData = {
       // Kontaktdaten
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      company: formData.company,
-      message: formData.message,
+      FirstName: formData.firstName,
+      LastName: formData.lastName,
+      Email: formData.email,
+      Phone: formData.phone,
+      Company: formData.company,
+      Message: formData.message,
       
-      // Qualifikationsdaten - vollständige Antworttexte
-      employees: qualificationData.employeesLabel || qualificationData.employees,
-      payroll: qualificationData.payrollLabel || qualificationData.payroll,
-      documents: qualificationData.documentsLabel || qualificationData.documents,
-      companyType: qualificationData.companyTypeLabel || qualificationData.companyType,
-      taxAdvisor: qualificationData.taxAdvisorLabel || qualificationData.taxAdvisor,
-      challenge: qualificationData.challengeLabel || qualificationData.challenge,
+      // Qualifikationsdaten - IMMER die vollständigen Antworttexte (Labels) verwenden
+      Employees: qualificationData.employeesLabel || qualificationData.employees || '',
+      Payroll: qualificationData.payrollLabel || qualificationData.payroll || '',
+      Documents: qualificationData.documentsLabel || qualificationData.documents || '',
+      CompanyType: qualificationData.companyTypeLabel || qualificationData.companyType || '',
+      TaxAdvisor: qualificationData.taxAdvisorLabel || qualificationData.taxAdvisor || '',
+      Challenge: qualificationData.challengeLabel || qualificationData.challenge || '',
       
       // Metadaten
-      timestamp: new Date().toISOString(),
-      source: 'Website Kontaktformular',
+      Timestamp: new Date().toISOString(),
+      Source: 'Website Kontaktformular',
     };
+
+    // Debug: Log die gesendeten Daten
+    console.log('=== WEBHOOK DATA ===');
+    console.log('QualificationData vollständig:', qualificationData);
+    console.log('Gesendete Daten:', allData);
+    console.log('Labels vorhanden:', {
+      employeesLabel: !!qualificationData.employeesLabel,
+      payrollLabel: !!qualificationData.payrollLabel,
+      documentsLabel: !!qualificationData.documentsLabel,
+      companyTypeLabel: !!qualificationData.companyTypeLabel,
+      taxAdvisorLabel: !!qualificationData.taxAdvisorLabel,
+      challengeLabel: !!qualificationData.challengeLabel,
+    });
 
     try {
       // Daten an Pabbly Webhook senden

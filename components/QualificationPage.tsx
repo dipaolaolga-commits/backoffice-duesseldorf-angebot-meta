@@ -130,18 +130,28 @@ export const QualificationPage = () => {
     return { isSuitable, reasons, score };
   };
 
-  const handleAnswer = (questionId: string, value: string) => {
-    // Finde das Label für die ausgewählte Option
-    const currentQuestion = questions.find(q => q.id === questionId);
-    const selectedOption = currentQuestion?.options.find(opt => opt.value === value);
-    const label = selectedOption?.label || '';
+  const handleAnswer = (questionId: string, value: string, label?: string) => {
+    // Finde das Label für die ausgewählte Option, falls nicht übergeben
+    let answerLabel = label;
+    if (!answerLabel) {
+      const currentQuestion = questions.find(q => q.id === questionId);
+      const selectedOption = currentQuestion?.options.find(opt => opt.value === value);
+      answerLabel = selectedOption?.label || value; // Fallback auf value falls kein Label gefunden
+    }
+    
+    // Debug: Log die gespeicherten Daten
+    console.log('Antwort gespeichert:', { questionId, value, label: answerLabel });
     
     // Speichere sowohl value als auch label
-    setFormData((prev) => ({ 
-      ...prev, 
-      [questionId]: value,
-      [`${questionId}Label`]: label
-    }));
+    setFormData((prev) => {
+      const updated = { 
+        ...prev, 
+        [questionId]: value,
+        [`${questionId}Label`]: answerLabel
+      };
+      console.log('Aktualisierte FormData:', updated);
+      return updated;
+    });
     
     if (currentStep < questions.length - 1) {
       // Nächste Frage nach kurzer Verzögerung
@@ -361,7 +371,7 @@ export const QualificationPage = () => {
             {currentQuestion.options.map((option, index) => (
               <motion.button
                 key={option.value}
-                onClick={() => handleAnswer(currentQuestion.id, option.value)}
+                onClick={() => handleAnswer(currentQuestion.id, option.value, option.label)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
