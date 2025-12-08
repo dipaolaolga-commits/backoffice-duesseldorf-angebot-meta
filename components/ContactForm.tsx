@@ -6,11 +6,17 @@ import { webhooks } from '../config/webhook';
 
 interface QualificationData {
   employees: string;
+  employeesLabel: string;
   payroll: string;
+  payrollLabel: string;
   documents: string;
+  documentsLabel: string;
   companyType: string;
+  companyTypeLabel: string;
   taxAdvisor: string;
+  taxAdvisorLabel: string;
   challenge: string;
+  challengeLabel: string;
 }
 
 interface ContactFormProps {
@@ -66,13 +72,13 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
       company: formData.company,
       message: formData.message,
       
-      // Qualifikationsdaten
-      employees: qualificationData.employees,
-      payroll: qualificationData.payroll,
-      documents: qualificationData.documents,
-      companyType: qualificationData.companyType,
-      taxAdvisor: qualificationData.taxAdvisor,
-      challenge: qualificationData.challenge,
+      // Qualifikationsdaten - vollständige Antworttexte
+      employees: qualificationData.employeesLabel || qualificationData.employees,
+      payroll: qualificationData.payrollLabel || qualificationData.payroll,
+      documents: qualificationData.documentsLabel || qualificationData.documents,
+      companyType: qualificationData.companyTypeLabel || qualificationData.companyType,
+      taxAdvisor: qualificationData.taxAdvisorLabel || qualificationData.taxAdvisor,
+      challenge: qualificationData.challengeLabel || qualificationData.challenge,
       
       // Metadaten
       timestamp: new Date().toISOString(),
@@ -231,19 +237,19 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
               <div className="grid md:grid-cols-2 gap-3 text-sm">
                 <div>
                   <span className="text-slate-600">Mitarbeiter:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.employees || 'Nicht angegeben'}</span>
+                  <span className="font-medium text-slate-900">{qualificationData.employeesLabel || qualificationData.employees || 'Nicht angegeben'}</span>
                 </div>
                 <div>
                   <span className="text-slate-600">Lohnabrechnung:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.payroll || 'Nicht angegeben'}</span>
+                  <span className="font-medium text-slate-900">{qualificationData.payrollLabel || qualificationData.payroll || 'Nicht angegeben'}</span>
                 </div>
                 <div>
                   <span className="text-slate-600">Belege/Monat:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.documents || 'Nicht angegeben'}</span>
+                  <span className="font-medium text-slate-900">{qualificationData.documentsLabel || qualificationData.documents || 'Nicht angegeben'}</span>
                 </div>
                 <div>
                   <span className="text-slate-600">Unternehmensform:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.companyType || 'Nicht angegeben'}</span>
+                  <span className="font-medium text-slate-900">{qualificationData.companyTypeLabel || qualificationData.companyType || 'Nicht angegeben'}</span>
                 </div>
               </div>
             </div>

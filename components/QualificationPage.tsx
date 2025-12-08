@@ -5,22 +5,34 @@ import { ContactForm } from './ContactForm';
 
 interface QualificationData {
   employees: string;
+  employeesLabel: string;
   payroll: string;
+  payrollLabel: string;
   documents: string;
+  documentsLabel: string;
   companyType: string;
+  companyTypeLabel: string;
   taxAdvisor: string;
+  taxAdvisorLabel: string;
   challenge: string;
+  challengeLabel: string;
 }
 
 export const QualificationPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<QualificationData>({
     employees: '',
+    employeesLabel: '',
     payroll: '',
+    payrollLabel: '',
     documents: '',
+    documentsLabel: '',
     companyType: '',
+    companyTypeLabel: '',
     taxAdvisor: '',
+    taxAdvisorLabel: '',
     challenge: '',
+    challengeLabel: '',
   });
 
   const questions = [
@@ -119,7 +131,17 @@ export const QualificationPage = () => {
   };
 
   const handleAnswer = (questionId: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [questionId]: value }));
+    // Finde das Label für die ausgewählte Option
+    const currentQuestion = questions.find(q => q.id === questionId);
+    const selectedOption = currentQuestion?.options.find(opt => opt.value === value);
+    const label = selectedOption?.label || '';
+    
+    // Speichere sowohl value als auch label
+    setFormData((prev) => ({ 
+      ...prev, 
+      [questionId]: value,
+      [`${questionId}Label`]: label
+    }));
     
     if (currentStep < questions.length - 1) {
       // Nächste Frage nach kurzer Verzögerung
