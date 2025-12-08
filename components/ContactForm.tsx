@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, Building } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { webhooks } from '../config/webhook';
 
 interface QualificationData {
   employees: string;
@@ -26,13 +27,71 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
     company: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendToPabblyWebhook = async (data: any) => {
+    try {
+      const response = await fetch(webhooks.pabbly.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Webhook request failed');
+      }
+
+      const result = await response.json();
+      console.log('Webhook erfolgreich gesendet:', result);
+      return result;
+    } catch (error) {
+      console.error('Fehler beim Senden an Webhook:', error);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Hier würde normalerweise die Formular-Daten gesendet werden
-    console.log('Formular-Daten:', { ...formData, qualificationData });
-    // Navigiere zur Dankesseite
-    navigate('/danke');
+    setIsSubmitting(true);
+
+    // Alle Daten zusammenfassen
+    const allData = {
+      // Kontaktdaten
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      company: formData.company,
+      message: formData.message,
+      
+      // Qualifikationsdaten
+      employees: qualificationData.employees,
+      payroll: qualificationData.payroll,
+      documents: qualificationData.documents,
+      companyType: qualificationData.companyType,
+      taxAdvisor: qualificationData.taxAdvisor,
+      challenge: qualificationData.challenge,
+      
+      // Metadaten
+      timestamp: new Date().toISOString(),
+      source: 'Website Kontaktformular',
+    };
+
+    try {
+      // Daten an Pabbly Webhook senden
+      await sendToPabblyWebhook(allData);
+      
+      // Navigiere zur Dankesseite
+      navigate('/danke');
+    } catch (error) {
+      // Auch bei Fehler zur Dankesseite navigieren (bessere UX)
+      console.error('Fehler beim Senden der Daten:', error);
+      navigate('/danke');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -191,12 +250,27 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
 
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 text-lg"
+              disabled={isSubmitting}
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 text-lg disabled:opacity-75 disabled:cursor-not-allowed"
             >
-              <Send className="h-5 w-5" />
-              Anfrage absenden
+              {isSubmitting ? (
+                <>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Send className="h-5 w-5" />
+                  </motion.div>
+                  Wird gesendet...
+                </>
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  Anfrage absenden
+                </>
+              )}
             </motion.button>
 
             <p className="text-xs text-slate-500 text-center">

@@ -335,7 +335,7 @@ export const QualificationPage = () => {
             {currentQuestion.question}
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {currentQuestion.options.map((option, index) => (
               <motion.button
                 key={option.value}
@@ -343,16 +343,16 @@ export const QualificationPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
-                whileHover={{ scale: 1.02, x: 5 }}
+                whileHover={{ scale: 1.01, x: 3 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full text-left p-6 rounded-xl border-2 transition-all ${
+                className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
                   formData[currentQuestion.id as keyof QualificationData] === option.value
                     ? 'border-blue-600 bg-blue-50 shadow-md'
                     : 'border-slate-200 bg-white hover:border-blue-300 hover:bg-blue-50/50'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-medium text-slate-900">
+                  <span className="text-base font-medium text-slate-900">
                     {option.label}
                   </span>
                   {formData[currentQuestion.id as keyof QualificationData] === option.value && (
@@ -361,7 +361,7 @@ export const QualificationPage = () => {
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200, damping: 15 }}
                     >
-                      <CheckCircle2 className="h-6 w-6 text-blue-600" />
+                      <CheckCircle2 className="h-5 w-5 text-blue-600" />
                     </motion.div>
                   )}
                 </div>
