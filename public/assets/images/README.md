@@ -21,3 +21,4 @@ Alle Bilder für die Website sind hier gespeichert.
 **Tipp:** Für optimale Performance sollten Bilder komprimiert sein:
 - Hero-Background: max. 500KB empfohlen
 - Andere Bilder: max. 200KB empfohlen
+

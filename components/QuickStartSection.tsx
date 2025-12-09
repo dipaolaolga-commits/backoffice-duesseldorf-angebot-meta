@@ -45,7 +45,7 @@ export const QuickStartSection = () => {
       id: 'step-3',
       number: '3',
       title: 'Start',
-      description: 'Innerhalb von 7 Tagen sind Sie startklar mit Klarheit und Ordnung.',
+      description: 'Sobald wir alle erforderlichen Unterlagen von Ihnen erhalten haben, können wir sofort starten',
       icon: Rocket,
       image: images.quickStart.step3,
     },

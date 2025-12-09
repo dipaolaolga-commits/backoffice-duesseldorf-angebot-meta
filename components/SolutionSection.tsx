@@ -83,13 +83,14 @@ export const SolutionSection = () => {
       ]
     },
     {
-      title: "Steuerlast-Prognose",
+      title: "Finanztrend-Analyse",
       icon: BarChart3,
       items: [
-        "Finanztrend-Analyse",
         "Rücklagenrechner",
         "Monatliche Klarheit",
         "Keine Überraschungen",
+        "Was bleibt mir wirklich?",
+        "Was muss ich zurücklegen?",
       ]
     },
   ];

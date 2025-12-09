@@ -34,3 +34,4 @@ export const images = {
     step3: '/assets/images/quickstart-step3.jpg',
   },
 } as const;
+

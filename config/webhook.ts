@@ -9,3 +9,4 @@ export const webhooks = {
     url: 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZkMDYzNDA0MzI1MjY5NTUzYzUxMzUi_pc',
   },
 } as const;
+
