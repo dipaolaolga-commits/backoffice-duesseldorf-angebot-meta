@@ -75,7 +75,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: premiumEase }}
             className="mb-8"
           >
-            <span className="inline-flex items-center gap-2.5 py-2 px-5 rounded-full bg-slate-900/5 backdrop-blur-sm border border-slate-200/60 text-slate-700 text-sm font-medium tracking-wide">
+            <span className="inline-flex items-center gap-2.5 py-2 px-5 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/70 text-blue-800 text-sm font-medium tracking-wide shadow-sm">
               <motion.div
                 animate={{ 
                   scale: [1, 1.12, 1],
@@ -107,7 +107,7 @@ export const Hero = () => {
                 />
                 <Shield className="h-4 w-4 text-blue-600 relative z-10" />
               </motion.div>
-              <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 bg-clip-text text-transparent font-semibold">
+              <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
                 30 % Rabatt – limitiert
               </span>
             </span>
