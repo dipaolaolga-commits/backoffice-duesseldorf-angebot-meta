@@ -7,9 +7,9 @@ export const Footer = () => {
     <footer className="bg-slate-900 text-slate-400 pt-16 pb-8 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div>
             <Link to="/" className="inline-block mb-4">
               <Logo isScrolled={false} variant="footer" />
             </Link>
@@ -22,29 +22,7 @@ export const Footer = () => {
               <span>DSGVO-konform • Verschlüsselt • Zertifiziert</span>
             </div>
           </div>
-          
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Navigation</h4>
-            <ul className="space-y-2">
-              {[
-                { name: 'Leistungen', href: '#solution' },
-                { name: 'Preise', href: '#pricing' },
-                { name: 'FAQ', href: '#faq' },
-                { name: 'Kontakt', href: '#contact' },
-              ].map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href} 
-                    className="text-sm text-slate-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
+
           {/* Contact */}
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">Kontakt</h4>

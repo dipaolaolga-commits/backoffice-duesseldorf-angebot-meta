@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { SlotsCounter } from './SlotsCounter';
+import { AnimatedCTAButton } from './AnimatedCTAButton';
 
 export const CTASection = () => {
   const navigate = useNavigate();
@@ -97,16 +99,13 @@ export const CTASection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: premiumEase }}
             >
-              <motion.button
-                onClick={handleClick}
-                disabled={isLoading}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="group inline-flex items-center justify-center bg-white text-slate-900 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 transition-all duration-300 disabled:opacity-75"
-              >
+              <AnimatedCTAButton onClick={handleClick} disabled={isLoading}>
                 Erstgespräch vereinbaren
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
+              </AnimatedCTAButton>
+              <div className="mt-4">
+                <SlotsCounter className="text-white/90" />
+              </div>
             </motion.div>
           </div>
         </motion.div>

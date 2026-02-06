@@ -124,16 +124,16 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-2 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-lg p-8 md:p-12"
+          className="px-4 md:px-8 pt-2"
         >
-          <div className="mb-8">
+          <div className="mb-4">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Lassen Sie uns in Kontakt treten
+              In 2 Minuten zu Ihrem Angebot
             </h2>
             <p className="text-lg text-slate-600">
               Basierend auf Ihren Angaben können wir Ihnen ein maßgeschneidertes Angebot erstellen.
@@ -230,69 +230,48 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                Zusätzliche Nachricht (optional)
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"
-                placeholder="Haben Sie noch Fragen oder spezielle Anforderungen?"
-              />
-            </div>
-
-            {/* Qualification Summary */}
-            <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
-              <h3 className="text-sm font-semibold text-blue-900 mb-3">
-                Ihre Angaben im Überblick:
-              </h3>
-              <div className="grid md:grid-cols-2 gap-3 text-sm">
-                <div>
-                  <span className="text-slate-600">Mitarbeiter:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.employeesLabel || qualificationData.employees || 'Nicht angegeben'}</span>
-                </div>
-                <div>
-                  <span className="text-slate-600">Lohnabrechnung:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.payrollLabel || qualificationData.payroll || 'Nicht angegeben'}</span>
-                </div>
-                <div>
-                  <span className="text-slate-600">Belege/Monat:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.documentsLabel || qualificationData.documents || 'Nicht angegeben'}</span>
-                </div>
-                <div>
-                  <span className="text-slate-600">Unternehmensform:</span>{' '}
-                  <span className="font-medium text-slate-900">{qualificationData.companyTypeLabel || qualificationData.companyType || 'Nicht angegeben'}</span>
-                </div>
-              </div>
-            </div>
-
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileHover={{ scale: isSubmitting ? 1 : 1.03, y: isSubmitting ? 0 : -3 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              className="w-full bg-slate-900 text-white font-bold py-4 px-8 rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 text-lg disabled:opacity-75 disabled:cursor-not-allowed"
+              className="relative w-full overflow-hidden rounded-xl text-white font-bold py-4 px-8 text-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+              style={{
+                background: 'linear-gradient(115deg, #2563eb 0%, #4f46e5 35%, #6366f1 65%, #2563eb 100%)',
+                backgroundSize: '200% 200%',
+                boxShadow: '0 10px 40px -10px rgba(37, 99, 235, 0.5), 0 4px 15px -3px rgba(0,0,0,0.1)',
+                animation: 'heroCtaGradient 4s ease infinite',
+              }}
             >
-              {isSubmitting ? (
-                <>
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Send className="h-5 w-5" />
-                  </motion.div>
-                  Wird gesendet...
-                </>
-              ) : (
-                <>
-                  <Send className="h-5 w-5" />
-                  Anfrage absenden
-                </>
+              {!isSubmitting && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
+                    width: '60%',
+                  }}
+                  animate={{ x: ['-100%', '200%'] }}
+                  transition={{ duration: 2.5, repeat: Infinity, repeatType: 'loop', ease: 'linear' }}
+                />
               )}
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                {isSubmitting ? (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    >
+                      <Send className="h-5 w-5" />
+                    </motion.div>
+                    Wird gesendet...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-5 w-5" />
+                    Anfrage absenden
+                  </>
+                )}
+              </span>
             </motion.button>
 
             <p className="text-xs text-slate-500 text-center">

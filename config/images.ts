@@ -1,37 +1,31 @@
 /**
  * Zentrale Bildkonfiguration
- * 
- * Hier können Sie alle Bilder auf der Website zentral verwalten und leicht austauschen.
- * 
- * Alle Bilder sind lokal im Ordner /public/assets/images/ gespeichert.
- * Um ein Bild auszutauschen:
- * 1. Ersetzen Sie die entsprechende .jpg Datei im Ordner public/assets/images/
- * 2. Behalten Sie den Dateinamen bei, oder aktualisieren Sie den Pfad hier
- * 
- * Unterstützte Formate: .jpg, .jpeg, .png, .webp
+ *
+ * Alle Bilder liegen im Ordner: public/bilder/
+ * Zum Austauschen: Datei in public/bilder/ ersetzen, Dateinamen beibehalten.
  */
 
 export const images = {
   // Hero Section - Hintergrundbild
   hero: {
-    background: '/assets/images/hero-background.jpg',
+    background: '/bilder/hero-background.jpg',
   },
 
-  // Problem Section - Bild in der rechten Spalte
+  // Problem Section - Bild in der rechten Spalte (mit 15h+-Badge)
   problem: {
-    main: '/assets/images/problem-main.jpg',
+    main: '/bilder/problem-main.jpg',
   },
 
   // Why Us Section - Hauptbild
   whyUs: {
-    main: '/assets/images/whyus-main.jpg',
+    main: '/bilder/whyus-main.jpg',
   },
 
   // Quick Start Section - Bilder für die 3 Schritte
   quickStart: {
-    step1: '/assets/images/quickstart-step1.jpg',
-    step2: '/assets/images/quickstart-step2.jpg',
-    step3: '/assets/images/quickstart-step3.jpg',
+    step1: '/bilder/quickstart-step1.jpg',
+    step2: '/bilder/quickstart-step2.jpg',
+    step3: '/bilder/quickstart-step3.jpg',
   },
 } as const;
 

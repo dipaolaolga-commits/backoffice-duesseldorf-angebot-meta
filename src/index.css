@@ -99,6 +99,18 @@
   100% { transform: translateX(100%) rotate(45deg); }
 }
 
+/* Hero CTA: animierter Farbverlauf */
+@keyframes heroCtaGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Backoffice-Karte: animierter grüner Rahmen */
+@keyframes emeraldBorderGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,

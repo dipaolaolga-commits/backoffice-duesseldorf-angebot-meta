@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { ContactForm } from './ContactForm';
+import { AnimatedCTAButton } from './AnimatedCTAButton';
 
 interface QualificationData {
   employees: string;
@@ -164,7 +165,7 @@ export const QualificationPage = () => {
       setTimeout(() => {
         setIsLoading(false);
         setShowEvaluation(true);
-      }, 1500); // 1.5 Sekunden für "Analyse"
+      }, 3000); // 3 Sekunden für "Analyse"
     }
   };
 
@@ -176,7 +177,7 @@ export const QualificationPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20 flex items-start justify-center pt-32">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -219,14 +220,14 @@ export const QualificationPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20"
+        className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center"
+            className="p-8 md:p-12 text-center"
           >
             {/* Ergebnis Icon */}
             <motion.div
@@ -251,7 +252,7 @@ export const QualificationPage = () => {
               className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
             >
               {evaluation.isSuitable 
-                ? 'Unser Service passt zu Ihnen! ✨' 
+                ? 'Unser Service passt zu Ihnen!' 
                 : 'Lassen Sie uns gemeinsam prüfen'}
             </motion.h2>
 
@@ -299,16 +300,16 @@ export const QualificationPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <button
+              <AnimatedCTAButton
                 onClick={() => {
                   setShowEvaluation(false);
                   setCurrentStep(questions.length);
                 }}
-                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="!rounded-xl !py-4 !px-8"
               >
                 Jetzt Erstgespräch buchen
                 <ArrowRight className="h-5 w-5" />
-              </button>
+              </AnimatedCTAButton>
             </motion.div>
           </motion.div>
         </div>
@@ -327,7 +328,7 @@ export const QualificationPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20"
+      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Progress Bar */}
@@ -361,7 +362,7 @@ export const QualificationPage = () => {
               duration: 0.5,
               ease: [0.4, 0, 0.2, 1]
             }}
-            className="bg-white rounded-2xl shadow-lg p-8 md:p-12"
+            className="p-8 md:p-12"
           >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">
             {currentQuestion.question}

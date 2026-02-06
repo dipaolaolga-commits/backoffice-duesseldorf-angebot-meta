@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Calendar, CheckCircle2, Rocket, ArrowRight, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { SlotsCounter } from './SlotsCounter';
+import { AnimatedCTAButton } from './AnimatedCTAButton';
 import { images } from '../config/images';
 
 interface Step {
@@ -149,17 +151,14 @@ export const QuickStartSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4, ease: premiumEase }}
         >
-          <motion.button
-            onClick={handleClick}
-            disabled={isLoading}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl text-white bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-75"
-          >
+          <AnimatedCTAButton onClick={handleClick} disabled={isLoading}>
             Jetzt starten
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-          </motion.button>
-          <p className="mt-4 text-sm text-slate-500">
+          </AnimatedCTAButton>
+          <div className="mt-4">
+            <SlotsCounter />
+          </div>
+          <p className="mt-3 text-sm text-slate-500">
             Unverbindlich • Kostenlos • In 60 Sekunden
           </p>
         </motion.div>

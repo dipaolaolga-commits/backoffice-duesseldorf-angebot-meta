@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Shield, Award, Star } from 'lucide-react';
+import { CheckCircle2, Shield, Award, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { SlotsCounter } from './SlotsCounter';
+import { AnimatedCTAButton } from './AnimatedCTAButton';
 import { images } from '../config/images';
 
 export const Hero = () => {
@@ -18,7 +20,7 @@ export const Hero = () => {
   const staggerDelay = 0.12;
 
   return (
-    <section className="relative flex items-center pt-32 pb-8 lg:pt-40 lg:pb-10 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+    <section className="relative flex items-center pt-4 pb-8 lg:pt-8 lg:pb-10 overflow-hidden bg-gradient-to-b from-blue-50 via-white to-slate-50">
       {/* Premium Background with Image */}
       <div className="absolute inset-0 z-0">
         {/* Background Image */}
@@ -31,7 +33,7 @@ export const Hero = () => {
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/75 via-white/70 to-slate-50/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/85 via-white/70 to-slate-50/75"></div>
         
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -64,7 +66,7 @@ export const Hero = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-7xl mx-auto">
           
           {/* Premium Trust Badge */}
           <motion.div
@@ -106,7 +108,7 @@ export const Hero = () => {
                 <Shield className="h-4 w-4 text-blue-600 relative z-10" />
               </motion.div>
               <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 bg-clip-text text-transparent font-semibold">
-                Ihr zuverlässiger Backoffice-Partner
+                30 % Rabatt – limitiert
               </span>
             </span>
           </motion.div>
@@ -118,57 +120,48 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: staggerDelay, ease: premiumEase }}
           >
-            Mehr Zeit fürs Geschäft.
-            <br />
+            Schluss mit teurer Fleißarbeit:{' '}
             <motion.span 
               className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: staggerDelay * 2, ease: premiumEase }}
             >
-              Weniger Papierkram.
+              Komplettes Backoffice schon ab 105 €
             </motion.span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-light"
+            className="text-lg sm:text-xl text-slate-600 mb-6 max-w-4xl mx-auto leading-relaxed font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: staggerDelay * 3, ease: premiumEase }}
           >
-            Wir übernehmen Ihre vorbereitende Buchhaltung und Lohnabrechnung, 
-            damit Sie Monat für Monat Ordnung, Klarheit und echte Planbarkeit haben.
+            In Düsseldorf und Umgebung: Schluss mit Papierkram und überteuerten Stunden für Fleißarbeit.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div 
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
+            id="hero-cta"
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: staggerDelay * 4, ease: premiumEase }}
           >
-            <motion.button
-              onClick={handleClick}
-              disabled={isLoading}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative px-8 py-4 text-lg font-semibold rounded-xl text-white bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-75"
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Erstgespräch vereinbaren
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </motion.button>
-            
-            <motion.a 
-              href="#solution"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group px-8 py-4 text-lg font-semibold rounded-xl text-slate-700 bg-white/80 backdrop-blur-sm hover:bg-white border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-lg transition-all duration-500"
-            >
-              Mehr erfahren
-            </motion.a>
+            <AnimatedCTAButton onClick={handleClick} disabled={isLoading}>
+              Jetzt Verfügbarkeit prüfen & Rabatt sichern
+            </AnimatedCTAButton>
+          </motion.div>
+
+          {/* Verknappung unter den CTAs */}
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: staggerDelay * 4.2, ease: premiumEase }}
+          >
+            <SlotsCounter />
           </motion.div>
 
           {/* Trust Indicators */}
@@ -209,8 +202,8 @@ export const Hero = () => {
             
             <div className="relative overflow-hidden py-4 -mx-4 sm:-mx-6 lg:-mx-8">
               {/* Gradient fade edges */}
-              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50/95 to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-50/95 to-transparent z-10"></div>
               
               <motion.div
                 animate={{ x: [0, -1400] }}

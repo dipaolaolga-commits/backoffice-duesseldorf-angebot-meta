@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PartnerSection } from './components/PartnerSection';
 import { ProblemSection } from './components/ProblemSection';
-import { AgitationSection } from './components/AgitationSection';
+import { ClassicVsBackofficeSection } from './components/ClassicVsBackofficeSection';
 import { SolutionSection } from './components/SolutionSection';
 import { WhyUsSection } from './components/WhyUsSection';
 import { PricingSection } from './components/PricingSection';
@@ -19,15 +19,16 @@ import { ImpressumPage } from './components/ImpressumPage';
 import { DatenschutzPage } from './components/DatenschutzPage';
 import { ThankYouPage } from './components/ThankYouPage';
 import { CookieBanner } from './components/CookieBanner';
+import { MobileStickyCTA } from './components/MobileStickyCTA';
 import { LoadingProvider } from './contexts/LoadingContext';
-import { ScrollToTop } from './components/ScrollToTop';
+import { SlotsProvider } from './contexts/SlotsContext';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
       <ProblemSection />
-      <AgitationSection />
+      <ClassicVsBackofficeSection />
       <SolutionSection />
       <SavingsCalculator />
       <QuickStartSection />
@@ -37,14 +38,19 @@ const HomePage = () => {
       <PricingSection />
       <FAQSection />
       <CTASection />
+      <MobileStickyCTA />
     </>
   );
 };
 
 const AppContent = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const isAnfragePage = location.pathname === '/anfrage' || location.pathname === '/danke';
+
   return (
     <>
-      <div className="min-h-screen bg-slate-50 flex flex-col w-full overflow-x-hidden">
+      <div className={`min-h-screen flex flex-col w-full overflow-x-hidden ${isHomePage || isAnfragePage ? 'bg-blue-50' : 'bg-slate-50'}`}>
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -57,7 +63,6 @@ const AppContent = () => {
         </main>
         <Footer />
       </div>
-      <ScrollToTop />
       <CookieBanner />
     </>
   );
@@ -67,7 +72,9 @@ const App = () => {
   return (
     <Router>
       <LoadingProvider>
-        <AppContent />
+        <SlotsProvider>
+          <AppContent />
+        </SlotsProvider>
       </LoadingProvider>
     </Router>
   );

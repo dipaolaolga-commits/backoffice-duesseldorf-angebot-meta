@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Check, ArrowRight, Shield } from 'lucide-react';
+import { Check, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
+import { SlotsCounter } from './SlotsCounter';
+import { AnimatedCTAButton } from './AnimatedCTAButton';
 
 export const PricingSection = () => {
   const navigate = useNavigate();
@@ -17,22 +19,28 @@ export const PricingSection = () => {
     {
       name: 'Starter',
       subtitle: 'bis 50 Belege',
-      price: '150',
-      brutto: '178,50',
+      priceOriginal: '150',
+      price: '105',
+      bruttoOriginal: '178,50',
+      brutto: '124,95',
       popular: false,
     },
     {
       name: 'Business',
       subtitle: 'bis 80 Belege',
-      price: '180',
-      brutto: '214,20',
+      priceOriginal: '180',
+      price: '126',
+      bruttoOriginal: '214,20',
+      brutto: '149,94',
       popular: true,
     },
     {
       name: 'Premium',
       subtitle: 'ab 80 Belege',
-      price: '250',
-      brutto: '297,50',
+      priceOriginal: '250',
+      price: '175',
+      bruttoOriginal: '297,50',
+      brutto: '208,25',
       popular: false,
     },
   ];
@@ -58,26 +66,23 @@ export const PricingSection = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: premiumEase }}
         >
-          <motion.span 
-            className="inline-block text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4"
-          >
+          <span className="inline-block text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold mb-4">
             Preise
-          </motion.span>
-          
+          </span>
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
-            Transparent & fair.
+            Faire Pauschalen. Keine versteckten Kosten.
           </h2>
-          
+
           <p className="text-lg text-slate-600 leading-relaxed">
-            Wählen Sie das Paket, das zu Ihrem Unternehmen passt. 
-            Keine versteckten Kosten, keine Überraschungen.
+            Sichern Sie sich diese Sonderkonditionen für volle 6 Monate.
           </p>
         </motion.div>
 
@@ -106,9 +111,12 @@ export const PricingSection = () => {
                   </p>
                 </div>
                 
-                {/* Price */}
+                {/* Price: Streichpreis + Rabattpreis */}
                 <div className="mb-6">
-                  <div className="flex items-baseline gap-1">
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <span className="text-xl text-slate-400 line-through">
+                      {plan.priceOriginal} €
+                    </span>
                     <span className="text-4xl font-bold text-slate-900">
                       {plan.price} €
                     </span>
@@ -117,7 +125,10 @@ export const PricingSection = () => {
                     </span>
                   </div>
                   <p className="text-xs mt-1 text-slate-400">
-                    brutto {plan.brutto} €
+                    <span className="line-through">{plan.bruttoOriginal} €</span> brutto {plan.brutto} €
+                  </p>
+                  <p className="text-xs mt-1 text-emerald-600 font-medium">
+                    Erste 6 Monate · Nur für 20 neue Kunden
                   </p>
                 </div>
                 
@@ -136,20 +147,29 @@ export const PricingSection = () => {
                 </ul>
                 
                 {/* CTA Button */}
-                <motion.button
+                <AnimatedCTAButton
                   onClick={handleClick}
                   disabled={isLoading}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-3.5 px-6 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-75"
+                  fullWidth
+                  className="!py-3.5 !px-6 !text-base"
                 >
-                  Jetzt starten
-                  <ArrowRight className="h-4 w-4" />
-                </motion.button>
+                  Jetzt 30 % sichern → Erstgespräch buchen
+                </AnimatedCTAButton>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Slots-Verknappung unter den Preiskarten */}
+        <motion.div
+          className="flex justify-center mb-8"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <SlotsCounter />
+        </motion.div>
 
         {/* Trust Badge */}
         <motion.div 
