@@ -124,7 +124,7 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-2 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-36 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -233,27 +233,10 @@ export const ContactForm = ({ qualificationData }: ContactFormProps) => {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: isSubmitting ? 1 : 1.03, y: isSubmitting ? 0 : -3 }}
+              whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              className="relative w-full overflow-hidden rounded-xl text-white font-bold py-4 px-8 text-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
-              style={{
-                background: 'linear-gradient(115deg, #2563eb 0%, #4f46e5 35%, #6366f1 65%, #2563eb 100%)',
-                backgroundSize: '200% 200%',
-                boxShadow: '0 10px 40px -10px rgba(37, 99, 235, 0.5), 0 4px 15px -3px rgba(0,0,0,0.1)',
-                animation: 'heroCtaGradient 4s ease infinite',
-              }}
+              className="relative w-full rounded-xl text-white font-bold py-4 px-8 text-lg shadow-md hover:shadow-lg transition-all duration-150 flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed bg-[#1e3a8a] hover:bg-[#172554]"
             >
-              {!isSubmitting && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
-                    width: '60%',
-                  }}
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatType: 'loop', ease: 'linear' }}
-                />
-              )}
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {isSubmitting ? (
                   <>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const ImpressumPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/20 pt-32 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/20 pt-36 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <motion.div

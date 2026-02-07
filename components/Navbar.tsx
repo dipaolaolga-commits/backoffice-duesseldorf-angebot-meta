@@ -51,7 +51,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="relative w-full z-50 bg-transparent py-5">
+    <nav className="absolute top-0 left-0 w-full z-50 bg-transparent py-5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Mobile: nur Logo zentriert */}
         <div className="flex md:hidden items-center justify-center">
@@ -96,7 +96,7 @@ export const Navbar = () => {
               disabled={isLoading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-75"
+              className="px-5 py-2.5 bg-[#1e3a8a] text-white text-sm font-medium rounded-lg hover:bg-[#172554] transition-all duration-150 shadow-sm hover:shadow-md disabled:opacity-75"
             >
               Anfrage starten
             </motion.button>

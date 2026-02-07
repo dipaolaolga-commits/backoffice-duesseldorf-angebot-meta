@@ -177,7 +177,7 @@ export const QualificationPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20 flex items-start justify-center pt-32">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-36 pb-20 flex items-start justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -220,7 +220,7 @@ export const QualificationPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20"
+        className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-36 pb-20"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -328,7 +328,7 @@ export const QualificationPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-6 pb-20"
+      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-36 pb-20"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Progress Bar */}

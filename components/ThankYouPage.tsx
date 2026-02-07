@@ -10,7 +10,7 @@ export const ThankYouPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 pb-20 flex items-center justify-center"
+      className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-36 pb-20 flex items-center justify-center"
     >
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

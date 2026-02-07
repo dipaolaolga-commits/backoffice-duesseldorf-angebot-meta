@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, Shield, Award, Star } from 'lucide-react';
+import { CheckCircle2, MapPin, Award, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLoading } from '../contexts/LoadingContext';
 import { SlotsCounter } from './SlotsCounter';
@@ -20,49 +20,19 @@ export const Hero = () => {
   const staggerDelay = 0.12;
 
   return (
-    <section className="relative flex items-center pt-4 pb-8 lg:pt-8 lg:pb-10 overflow-hidden bg-gradient-to-b from-blue-50 via-white to-slate-50">
+    <section className="relative flex items-center pt-36 pb-8 lg:pt-40 lg:pb-10 overflow-hidden bg-gradient-to-b from-blue-50 via-white to-slate-50">
       {/* Premium Background with Image */}
       <div className="absolute inset-0 z-0">
-        {/* Background Image */}
+        {/* Background Image – Desktop & Mobil, gleicher Look mit weißem Overlay */}
         <img 
           src={images.hero.background} 
           alt="Professionelles Büro" 
-          className="hidden md:block w-full h-full object-cover"
-          style={{ opacity: 0.20 }}
+          className="w-full h-full object-cover"
           loading="eager"
         />
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/85 via-white/70 to-slate-50/75"></div>
-        
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(15, 23, 42, 0.5) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(15, 23, 42, 0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px'
-        }}></div>
-        
-        {/* Elegant gradient orbs */}
-        <motion.div 
-          className="absolute -top-[40%] -right-[20%] w-[1000px] h-[1000px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)'
-          }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, ease: premiumEase }}
-        />
-        <motion.div 
-          className="absolute top-[20%] -left-[20%] w-[800px] h-[800px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%)'
-          }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, delay: 0.3, ease: premiumEase }}
-        />
+        {/* Einziges Overlay: Weiße Ebene ca. 85 % Deckkraft */}
+        <div className="absolute inset-0 bg-white/85" aria-hidden="true" />
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -76,39 +46,9 @@ export const Hero = () => {
             className="mb-8"
           >
             <span className="inline-flex items-center gap-2.5 py-2 px-5 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/70 text-blue-800 text-sm font-medium tracking-wide shadow-sm">
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.12, 1],
-                  rotate: [0, 3, -3, 0],
-                  y: [0, -2, 0]
-                }}
-                transition={{ 
-                  duration: 3.5, 
-                  repeat: Infinity, 
-                  ease: [0.4, 0, 0.6, 1],
-                  repeatDelay: 0.3
-                }}
-                className="relative"
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.5, 1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    background: "radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%)"
-                  }}
-                />
-                <Shield className="h-4 w-4 text-blue-600 relative z-10" />
-              </motion.div>
-              <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
-                30 % Rabatt – limitiert
+              <MapPin className="h-4 w-4 flex-shrink-0 text-[#ED3728]" aria-hidden />
+              <span className="font-semibold text-[#1e3a8a]">
+                Für Inhaber in Düsseldorf & Umgebung
               </span>
             </span>
           </motion.div>
@@ -122,12 +62,12 @@ export const Hero = () => {
           >
             Schluss mit teurer Fleißarbeit:{' '}
             <motion.span 
-              className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent"
+              className="text-[#1e3a8a]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: staggerDelay * 2, ease: premiumEase }}
             >
-              Komplettes Backoffice schon ab 105 €
+              Wir erledigen Ihren Papierkram schon ab <span className="whitespace-nowrap">105{'\u00A0'}€</span>
             </motion.span>
           </motion.h1>
 
@@ -138,7 +78,7 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: staggerDelay * 3, ease: premiumEase }}
           >
-            In Düsseldorf und Umgebung: Schluss mit Papierkram und überteuerten Stunden für Fleißarbeit.
+            Befreien Sie sich von Chaos und hohen Steuerberater-Rechnungen für einfache Sortieraufgaben.
           </motion.p>
 
           {/* CTA Buttons */}
